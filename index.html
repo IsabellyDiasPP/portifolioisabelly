@@ -266,28 +266,130 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 </section>
 
 <!-- ===================== CERTIFICADOS ===================== -->
+<!--
+  COMO ANEXAR O PDF DE CADA CERTIFICADO
+  1) Crie uma pasta chamada CERTIFICADOS ao lado do index.html e coloque os PDFs lá.
+  2) No botão do card, preencha o atributo data-pdf com o caminho do arquivo.
+     Exemplo: data-pdf="CERTIFICADOS/etec-administracao.pdf"
+  3) Se data-pdf ficar vazio (""), o botão aparece desativado como "PDF em breve".
+  O PDF ABRE em uma nova aba (não baixa). Evite espaços e acentos nos nomes dos arquivos.
+-->
 <section class="certificados-section" id="certificados">
 <div class="section-heading reveal">
 <span class="label">Formação</span>
 <h2>Meus <span class="destaque">Certificados</span></h2>
 </div>
+
+<!-- ======= 2 CERTIFICADOS EM DESTAQUE ======= -->
+<div class="certificados-destaque stagger-group">
+
+<article class="certificado-card destaque">
+<span class="cert-badge">Formação técnica</span>
+<h3>Curso Técnico em Administração</h3>
+<p class="cert-instituicao">ETEC</p>
+<p class="cert-descricao">Formação técnica voltada à gestão, organização de processos, planejamento e rotinas administrativas.</p>
+<div class="cert-rodape">
+<span class="cert-status">Ano · Preencha aqui</span>
+<a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — ETEC" href="#">
+<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
+</div>
+</article>
+
+<article class="certificado-card destaque">
+<span class="cert-badge">Formação técnica</span>
+<h3>Curso Técnico em Administração</h3>
+<p class="cert-instituicao">SENAI</p>
+<p class="cert-descricao">Formação técnica em administração com foco em processos, planejamento e prática profissional.</p>
+<div class="cert-rodape">
+<span class="cert-status andamento"><i class="ponto"></i>Em andamento</span>
+<a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — SENAI" href="#">
+<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></svg>
+<span class="btn-pdf-texto">Abrir declaração</span>
+</a>
+</div>
+</article>
+
+</div>
+
+<!-- ======= DEMAIS CERTIFICADOS ======= -->
+<h3 class="certificados-subtitulo reveal">Cursos e <span class="destaque">certificações</span></h3>
+
 <div class="certificados-grid stagger-group">
+
 <div class="certificado-card">
 <h3>Nome do curso 1</h3>
 <p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 1" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
 </div>
+
 <div class="certificado-card">
 <h3>Nome do curso 2</h3>
 <p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 2" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
 </div>
+
 <div class="certificado-card">
 <h3>Nome do curso 3</h3>
 <p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 3" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
 </div>
+
 <div class="certificado-card">
 <h3>Nome do curso 4</h3>
 <p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 4" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
 </div>
+
+<div class="certificado-card">
+<h3>Nome do curso 5</h3>
+<p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 5" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
+</div>
+
+<div class="certificado-card">
+<h3>Nome do curso 6</h3>
+<p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 6" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
+</div>
+
+<div class="certificado-card">
+<h3>Nome do curso 7</h3>
+<p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 7" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
+</div>
+
+<div class="certificado-card">
+<h3>Nome do curso 8</h3>
+<p>Instituição · Ano</p>
+<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 8" href="#">
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+<span class="btn-pdf-texto">Abrir certificado</span>
+</a>
+</div>
+
 </div>
 </section>
 
@@ -437,6 +539,33 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   modal.querySelector('.proj-modal-close').addEventListener('click', fecharModal);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('open')) fecharModal();
+  });
+
+  // ===================== CERTIFICADOS: botão que ABRE o PDF (não baixa) =====================
+  // Lê o atributo data-pdf de cada botão:
+  //  - preenchido  -> vira link que abre o PDF em uma nova aba (sem atributo "download")
+  //  - vazio ("")  -> botão desativado "PDF em breve"
+  document.querySelectorAll('.btn-pdf').forEach(btn => {
+    const caminho = (btn.dataset.pdf || '').trim();
+    const titulo = btn.dataset.titulo || 'certificado';
+    const texto = btn.querySelector('.btn-pdf-texto');
+
+    if (!caminho) {
+      btn.classList.add('desativado');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.setAttribute('tabindex', '-1');
+      btn.removeAttribute('target');
+      btn.removeAttribute('rel');
+      if (texto) texto.textContent = 'PDF em breve';
+      btn.addEventListener('click', e => e.preventDefault());
+      return;
+    }
+
+    btn.setAttribute('href', encodeURI(caminho));
+    btn.setAttribute('target', '_blank');
+    btn.setAttribute('rel', 'noopener noreferrer');
+    btn.removeAttribute('download'); // garante que NÃO baixa, apenas abre
+    btn.setAttribute('aria-label', 'Abrir PDF: ' + titulo + ' (nova aba)');
   });
 
   // navbar muda ao rolar a página

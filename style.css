@@ -763,12 +763,13 @@ section[id]{
   background:#fff;
 }
 
-.certificados-grid{
+/* ---------- 2 cards em destaque (topo) ---------- */
+.certificados-destaque{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
   max-width:1100px;
-  margin:0 auto;
+  margin:0 auto 80px;
 }
 
 .certificado-card{
@@ -795,6 +796,193 @@ section[id]{
 .certificado-card p{
   color:var(--gray);
   font-size:14px;
+}
+
+.certificado-card.destaque{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:44px 38px 34px;
+  border:1.5px solid var(--dark);
+  border-radius:20px;
+  background:linear-gradient(160deg,#fffdf8 0%,var(--bg) 60%,#f6efe0 100%);
+  box-shadow:0 30px 50px -28px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+
+/* faixa vermelha no topo do card em destaque */
+.certificado-card.destaque::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg,var(--red),#e24a4a);
+}
+
+/* detalhe decorativo no canto */
+.certificado-card.destaque::after{
+  content:'';
+  position:absolute;
+  right:-60px;
+  bottom:-60px;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(199,30,30,.10),transparent 70%);
+  pointer-events:none;
+}
+
+.certificado-card.destaque:hover{
+  transform:translateY(-10px);
+  box-shadow:0 40px 60px -26px rgba(199,30,30,.35);
+  border-color:var(--red);
+}
+
+.cert-badge{
+  align-self:flex-start;
+  background:var(--dark);
+  color:#fff;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:7px 16px;
+  border-radius:30px;
+  margin-bottom:22px;
+}
+
+.certificado-card.destaque h3{
+  font-size:clamp(22px,2.4vw,30px);
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:10px;
+}
+
+.certificado-card.destaque .cert-instituicao{
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+  font-size:22px;
+  font-weight:700;
+  color:var(--red);
+  margin-bottom:16px;
+}
+
+.certificado-card.destaque .cert-descricao{
+  color:#555;
+  font-size:15px;
+  line-height:1.7;
+  margin-bottom:28px;
+  max-width:420px;
+}
+
+.cert-rodape{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  padding-top:22px;
+  border-top:1px dashed var(--border);
+  position:relative;
+  z-index:1;
+}
+
+.cert-status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.5px;
+  color:var(--gray);
+}
+
+.cert-status.andamento{
+  color:#a31717;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  font-size:12px;
+}
+
+.cert-status .ponto{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--red);
+  display:inline-block;
+  animation:pulseStatus 1.6s ease-in-out infinite;
+}
+
+@keyframes pulseStatus{
+  0%,100%{ box-shadow:0 0 0 0 rgba(199,30,30,.45); }
+  50%{ box-shadow:0 0 0 7px rgba(199,30,30,0); }
+}
+
+/* ---------- botão que ABRE o PDF ---------- */
+.btn-pdf{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  font-family:'Poppins', sans-serif;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.6px;
+  color:var(--red);
+  border:1.5px solid var(--red);
+  border-radius:30px;
+  padding:10px 20px;
+  background:transparent;
+  cursor:pointer;
+  transition:background .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+
+.btn-pdf svg{
+  flex:none;
+}
+
+.btn-pdf:hover,
+.btn-pdf:focus-visible{
+  background:var(--red);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 10px 18px -8px rgba(199,30,30,.6);
+  outline:none;
+}
+
+.btn-pdf.pequeno{
+  margin-top:18px;
+  padding:8px 16px;
+  font-size:12px;
+}
+
+.btn-pdf.desativado{
+  color:var(--gray);
+  border-color:var(--border);
+  background:rgba(0,0,0,.03);
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+/* ---------- subtítulo da grade de demais certificados ---------- */
+.certificados-subtitulo{
+  text-align:center;
+  font-family:'Playfair Display', serif;
+  font-weight:800;
+  font-size:clamp(22px,2.8vw,32px);
+  margin:0 auto 36px;
+}
+
+.certificados-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+  max-width:1100px;
+  margin:0 auto;
 }
 
 /* ===================== CONTATO ===================== */
@@ -1049,6 +1237,9 @@ footer p{
   .projeto-carousel{
     border-radius:16px;
   }
+  .certificado-card.destaque{
+    padding:40px 28px 30px;
+  }
 }
 
 /* ===================== MENU MOBILE + PROJETOS EMPILHADOS ===================== */
@@ -1109,6 +1300,12 @@ footer p{
 
   .sobre-img{
     width:70%;
+  }
+
+  /* certificados em destaque empilham em 1 coluna */
+  .certificados-destaque{
+    grid-template-columns:1fr;
+    margin-bottom:60px;
   }
 }
 
@@ -1289,6 +1486,19 @@ footer p{
 
   .certificado-card{
     padding:22px;
+  }
+
+  .certificado-card.destaque{
+    padding:36px 22px 26px;
+  }
+
+  .certificado-card.destaque .cert-instituicao{
+    font-size:19px;
+  }
+
+  .cert-rodape{
+    flex-direction:column;
+    align-items:flex-start;
   }
 
   .envelope{
