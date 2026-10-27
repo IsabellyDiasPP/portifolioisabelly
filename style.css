@@ -534,6 +534,178 @@ section[id]{
   max-width:440px;
 }
 
+/* ===================== CLIQUE NA IMAGEM → JANELA DO PROJETO ===================== */
+/* o texto fica escondido na página e só aparece dentro da janela */
+.projeto-info p{
+  display:none;
+}
+
+.projeto-carousel{
+  cursor:pointer;
+}
+
+.projeto-carousel:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:4px;
+}
+
+/* dica que aparece ao passar o mouse sobre as imagens */
+.projeto-carousel::after{
+  content:'Ver sobre o projeto';
+  position:absolute;
+  left:50%;
+  bottom:16px;
+  transform:translate(-50%,8px);
+  background:rgba(26,26,26,.78);
+  color:#fff;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:8px 18px;
+  border-radius:30px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease, transform .3s ease;
+  z-index:5;
+  white-space:nowrap;
+}
+
+.projeto-carousel:hover::after,
+.projeto-carousel:focus-visible::after{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* no celular não existe "hover": a dica fica sempre visível */
+@media (hover:none){
+  .projeto-carousel::after{
+    opacity:.9;
+    transform:translate(-50%,0);
+  }
+}
+
+/* fundo escurecido */
+.proj-modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(20,15,10,.55);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .35s ease, visibility .35s ease;
+}
+
+.proj-modal.open{
+  opacity:1;
+  visibility:visible;
+}
+
+/* cartão pequeno no centro */
+.proj-modal-card{
+  position:relative;
+  width:min(100%,520px);
+  max-height:86vh;
+  overflow-y:auto;
+  background:#fff;
+  border-radius:20px;
+  padding:26px 28px 30px;
+  box-shadow:0 40px 80px -20px rgba(0,0,0,.5);
+  transform:translateY(30px) scale(.96);
+  transition:transform .45s cubic-bezier(.34,1.3,.6,1);
+  outline:none;
+}
+
+.proj-modal.open .proj-modal-card{
+  transform:translateY(0) scale(1);
+}
+
+.proj-modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:1.5px solid var(--red);
+  background:rgba(255,255,255,.92);
+  color:var(--red);
+  font-size:22px;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:2;
+  transition:background .3s ease, color .3s ease, transform .3s ease;
+}
+
+.proj-modal-close:hover{
+  background:var(--red);
+  color:#fff;
+  transform:rotate(90deg);
+}
+
+.proj-modal-img{
+  margin:-26px -28px 22px;
+}
+
+.proj-modal-img img{
+  display:block;
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  border-radius:20px 20px 0 0;
+}
+
+.proj-modal-num{
+  display:block;
+  color:var(--red);
+  font-weight:700;
+  letter-spacing:2px;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.proj-modal-title{
+  font-family:'Playfair Display', serif;
+  font-weight:800;
+  font-size:clamp(22px,4vw,28px);
+  margin-bottom:14px;
+  padding-right:30px;
+}
+
+.proj-modal-text{
+  color:#444;
+  line-height:1.75;
+  font-size:15px;
+}
+
+@media (max-width:480px){
+  .proj-modal{
+    padding:14px;
+  }
+  .proj-modal-card{
+    padding:22px 20px 26px;
+  }
+  .proj-modal-img{
+    margin:-22px -20px 18px;
+  }
+  .proj-modal-img img{
+    height:170px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .proj-modal, .proj-modal-card, .projeto-carousel::after{ transition:none; }
+}
+
 /* ===================== HABILIDADES ===================== */
 .habilidades-section{
   padding:120px 8vw;
