@@ -1,25 +1,22 @@
 :root{
-  --bg:#fdfcf9;
+  --bg:#fcf8f0;          /* quase o original, só um pouquinho mais quente */
+  --bg-2:#fffdf8;
+  --card:#fffdf9;
   --dark:#1a1a1a;
   --red:#c71e1e;
-  --gray:#777;
-  --border:#e4e1da;
+  --gray:#6f6a62;
+  --border:#ebe2d2;
   --kraft:#e4d2ae;
   --kraft-dark:#c9b088;
   --ink:#3a2f22;
 
-  /* Recorte da "telinha" da câmera onde o rolo de fotos aparece.
-     Se sobrar uma frestinha da cor de fundo nas bordas, aumente
-     --tela-width/--tela-height de 1% em 1% (e ajuste --tela-left/--tela-top
-     na metade do valor somado, para manter centralizado). */
   --tela-top: -57%;
   --tela-left: 10.6%;
   --tela-width: 53%;
   --tela-height: 132%;
 
-  /* AJUSTES DA HOME (desktop/tablet) */
-  --camera-descida: 38%;   /* maior = câmera mais baixa (ex.: 45%) */
-  --rolo-duracao: 14s;     /* menor = fotos mais rápidas (ex.: 10s) */
+  --camera-descida: 38%;
+  --rolo-duracao: 8s;     /* fotos mais rápidas */
 }
 
 /* RESET */
@@ -64,7 +61,7 @@ section[id]{
   align-items:center;
   justify-content:space-between;
   padding:20px 6vw;
-  background:rgba(253,252,249,.85);
+  background:rgba(252,250,246,.9);
   backdrop-filter:blur(10px);
   z-index:200;
   box-shadow:0 4px 20px rgba(0,0,0,0);
@@ -142,7 +139,7 @@ section[id]{
   transition:.3s;
 }
 
-/* ===================== HOME / CÂMERA ===================== */
+/* ===================== HOME / CÂMERA (versão antiga restaurada) ===================== */
 .hero{
   position:relative;
   width:100%;
@@ -359,84 +356,192 @@ section[id]{
 
 /* ===================== SOBRE MIM ===================== */
 .sobre-section{
-  padding:120px 8vw;
+  padding:120px 8vw 100px;
+  background:var(--bg);
 }
 
-.sobre-container{
-  display:flex;
-  align-items:center;
-  gap:80px;
-  max-width:1200px;
-  margin:0 auto;
-}
-
-.sobre-img{
-  flex:0 0 40%;
-  min-width:0;
-}
-
-.sobre-img img{
-  width:100%;
-  aspect-ratio:3/4;
-  object-fit:cover;
-  border-radius:16px;
-}
-
-/* colagem com duas fotos */
-.sobre-img.duo{
+/* colagem em GRID: cada item tem a sua própria área, então nada fica por cima do texto.
+   Linha 1: título | Linha 2: foto 1 + texto | Linha 3: foto 2 + TV */
+.sobre-board{
   position:relative;
-  flex:0 0 44%;
-  padding-bottom:20%;
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  column-gap:24px;
+  row-gap:56px;
+  align-items:start;
 }
 
-.sobre-img.duo img{
-  border:8px solid #fff;
-  border-radius:6px;
-  box-shadow:0 22px 40px -16px rgba(0,0,0,.4);
-  transition:transform .5s ease;
+.s-item{
+  position:relative;
 }
 
-.sobre-img.duo .foto-1{
-  display:block;
-  width:76%;
-  transform:rotate(-3deg);
+.sobre-board .s-item.reveal{
+  transition:opacity .8s ease, transform .8s ease, rotate .5s ease;
 }
 
-.sobre-img.duo .foto-2{
-  position:absolute;
-  right:0;
-  bottom:0;
-  width:52%;
-  transform:rotate(5deg);
+.s-titulo{
+  grid-column:6 / 13;
+  grid-row:1;
+  justify-self:end;
+  text-align:right;
 }
 
-.sobre-img.duo .foto-1:hover{ transform:rotate(-1deg) scale(1.02); }
-.sobre-img.duo .foto-2:hover{ transform:rotate(3deg) scale(1.03); }
-
-.sobre-texto{
-  flex:1;
-  min-width:0;
-}
-
-.sobre-texto h2{
+.s-titulo h2{
   font-family:'Playfair Display', serif;
   font-weight:800;
-  font-size:clamp(28px,3.6vw,46px);
-  margin-bottom:24px;
+  font-size:clamp(38px,5.2vw,68px);
+  line-height:1;
+  color:var(--red);
 }
 
-.sobre-texto p{
-  color:#444;
-  line-height:1.8;
-  font-size:16px;
-  margin-bottom:16px;
-  max-width:520px;
+.s-texto{
+  grid-column:5 / 13;
+  grid-row:2;
+  padding-left:20px;
+}
+
+.s-texto p{
+  font-family:'Poppins', Arial, Helvetica, sans-serif;
+  font-weight:400;
+  font-size:clamp(15px,1.35vw,17px);
+  line-height:1.75;
+  color:var(--ink);
+  margin-bottom:20px;
+  letter-spacing:.2px;
+}
+
+.s-texto p:last-child{
+  margin-bottom:0;
+}
+
+.s-foto1{
+  grid-column:1 / 5;
+  grid-row:1 / 3;
+  width:100%;
+  max-width:290px;
+  margin-top:24px;
+  rotate:-2deg;
+}
+
+.s-foto2{
+  grid-column:2 / 6;
+  grid-row:3;
+  width:100%;
+  max-width:290px;
+  rotate:-8deg;
+}
+
+.s-foto3{
+  grid-column:7 / 13;
+  grid-row:3;
+  justify-self:end;
+  width:100%;
+  max-width:460px;
+  margin-top:24px;
+  rotate:1.5deg;
+}
+
+.s-foto1:hover{ rotate:-1deg; }
+.s-foto2:hover{ rotate:-5deg; }
+.s-foto3:hover{ rotate:0deg; }
+
+.polaroid{
+  background:#fff;
+  padding:10px 10px 38px;
+  border-radius:3px;
+  box-shadow:0 18px 34px -16px rgba(0,0,0,.3);
+}
+
+.polaroid img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+}
+
+/* moldura de TV retrô */
+.tv{
+  position:relative;
+  padding:8px 8px 22px;
+  background:#2a2a2e;
+  border:7px solid #b9b9bd;
+  border-radius:8px;
+  box-shadow:0 18px 34px -16px rgba(0,0,0,.35), inset 0 0 0 2px #7d7d82;
+}
+
+.tv img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:3px;
+}
+
+.tv::after{
+  content:'';
+  position:absolute;
+  right:14px;
+  bottom:6px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#e24a4a;
+  box-shadow:-14px 0 0 #c9c9ce;
+}
+
+/* flores decorativas */
+.flor{
+  position:absolute;
+  z-index:5;
+  pointer-events:none;
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.25));
+  animation:floatFlor 5s ease-in-out infinite;
+}
+
+.flor-1{ width:72px; top:-34px; right:-38px; rotate:-12deg; }
+.flor-2{ width:60px; top:8px; right:-64px; rotate:18deg; animation-delay:-1.5s; }
+
+@keyframes floatFlor{
+  0%,100%{ translate:0 0; }
+  50%{ translate:0 -7px; }
 }
 
 /* ===================== PROJETOS ===================== */
 .projetos-section{
   padding:120px 8vw;
-  background:#fff;
+  background:var(--bg-2);
+}
+
+.projetos-section .section-heading{
+  margin-bottom:24px;
+}
+
+/* aviso de produção acadêmica */
+.aviso-academico{
+  max-width:720px;
+  margin:0 auto 80px;
+  text-align:center;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--gray);
+  padding:0 2vw;
+}
+
+.aviso-selo{
+  display:inline-block;
+  margin-right:8px;
+  padding:4px 12px;
+  border:1.5px solid var(--red);
+  border-radius:4px;
+  color:var(--red);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  transform:rotate(-2deg);
+  vertical-align:middle;
 }
 
 .projetos-lista{
@@ -469,6 +574,26 @@ section[id]{
   box-shadow:0 25px 45px -18px rgba(0,0,0,.35);
 }
 
+/* selo "Produção acadêmica" sobre a imagem */
+.selo-academico{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:6;
+  padding:5px 12px;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:#fff;
+  background:rgba(26,26,26,.72);
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:4px;
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  pointer-events:none;
+}
+
 .carousel-track{
   position:relative;
   width:100%;
@@ -496,7 +621,7 @@ section[id]{
   display:block;
   object-fit:cover;
   object-position:center;
-  background:#f5f3ef;
+  background:#efe5d3;
 }
 
 .video-container{
@@ -535,6 +660,7 @@ section[id]{
   font-weight:800;
   font-size:clamp(22px,2.6vw,34px);
   margin-bottom:16px;
+  line-height:1.2;
 }
 
 .projeto-info p{
@@ -592,6 +718,11 @@ section[id]{
   }
 }
 
+/* botão "Visitar site" exibido no card do projeto */
+.projeto-link{
+  margin-top:18px;
+}
+
 .proj-modal{
   position:fixed;
   inset:0;
@@ -618,7 +749,7 @@ section[id]{
   width:min(100%,520px);
   max-height:86vh;
   overflow-y:auto;
-  background:#fff;
+  background:#fffaf1;
   border-radius:20px;
   padding:26px 28px 30px;
   box-shadow:0 40px 80px -20px rgba(0,0,0,.5);
@@ -669,6 +800,16 @@ section[id]{
   border-radius:20px 20px 0 0;
 }
 
+/* vídeo dentro do modal (projeto VieFive) */
+.proj-modal-img video{
+  display:block;
+  width:100%;
+  max-height:320px;
+  object-fit:contain;
+  background:#000;
+  border-radius:20px 20px 0 0;
+}
+
 .proj-modal-num{
   display:block;
   color:var(--red);
@@ -684,12 +825,43 @@ section[id]{
   font-size:clamp(22px,4vw,28px);
   margin-bottom:14px;
   padding-right:30px;
+  line-height:1.2;
 }
 
+/* texto do projeto JUSTIFICADO */
 .proj-modal-text{
   color:#444;
   line-height:1.75;
   font-size:15px;
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+}
+
+/* botões de ação do modal (PDF / site) */
+.proj-modal-acoes{
+  display:none;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.proj-modal-aviso{
+  margin-top:22px;
+  padding-top:16px;
+  border-top:1px dashed var(--border);
+  font-size:12.5px;
+  line-height:1.6;
+  color:var(--gray);
+  text-align:left;
+}
+
+.proj-modal-aviso strong{
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:11.5px;
 }
 
 @media (max-width:480px){
@@ -705,10 +877,14 @@ section[id]{
   .proj-modal-img img{
     height:170px;
   }
+  .proj-modal-img video{
+    max-height:240px;
+  }
 }
 
 @media (prefers-reduced-motion:reduce){
   .proj-modal, .proj-modal-card, .projeto-carousel::after{ transition:none; }
+  .flor{ animation:none; }
 }
 
 /* ===================== HABILIDADES ===================== */
@@ -762,10 +938,10 @@ section[id]{
   transform:translateY(-3px);
 }
 
-/* ===================== CERTIFICADOS ===================== */
+/* ===================== FORMAÇÃO / CERTIFICADOS ===================== */
 .certificados-section{
   padding:120px 8vw;
-  background:#fff;
+  background:var(--bg-2);
 }
 
 /* 3 cards em destaque (faculdade, ETEC, SENAI) */
@@ -781,7 +957,7 @@ section[id]{
   border:1px solid var(--border);
   border-radius:14px;
   padding:30px;
-  background:var(--bg);
+  background:var(--card);
   transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
 
@@ -810,7 +986,7 @@ section[id]{
   padding:44px 38px 34px;
   border:1.5px solid var(--dark);
   border-radius:20px;
-  background:linear-gradient(160deg,#fffdf8 0%,var(--bg) 60%,#f6efe0 100%);
+  background:linear-gradient(160deg,#fffdf8 0%,var(--card) 60%,#f6efe0 100%);
   box-shadow:0 30px 50px -28px rgba(0,0,0,.35);
   overflow:hidden;
 }
@@ -925,7 +1101,7 @@ section[id]{
   50%{ box-shadow:0 0 0 7px rgba(199,30,30,0); }
 }
 
-/* botão que ABRE o PDF */
+/* botão que ABRE o PDF (também usado no "Visitar site") */
 .btn-pdf{
   display:inline-flex;
   align-items:center;
@@ -971,6 +1147,18 @@ section[id]{
   pointer-events:none;
 }
 
+/* variação preenchida (botão "Visitar site") */
+.btn-pdf.btn-site{
+  background:var(--red);
+  color:#fff;
+}
+
+.btn-pdf.btn-site:hover,
+.btn-pdf.btn-site:focus-visible{
+  background:#a31717;
+  border-color:#a31717;
+}
+
 .certificados-subtitulo{
   text-align:center;
   font-family:'Playfair Display', serif;
@@ -987,7 +1175,7 @@ section[id]{
   margin:0 auto;
 }
 
-/* ===================== CONTATO ===================== */
+/* ===================== CONTATO (versão antiga restaurada) ===================== */
 .contato-section{
   padding:140px 8vw 60px;
   text-align:center;
@@ -1179,10 +1367,12 @@ section[id]{
 }
 
 .postcard-msg p{
-  font-family:'Caveat', cursive;
-  font-size:19px;
-  line-height:1.45;
+  font-family:'Poppins', Arial, Helvetica, sans-serif;  /* ou 'Caveat' se preferir manuscrito */
+  font-size:16px;
+  font-weight:500;
+  line-height:1.5;
   color:var(--ink);
+  letter-spacing:.3px;
 }
 
 .postcard-divider{
@@ -1237,6 +1427,12 @@ footer p{
   font-size:13px;
 }
 
+footer .footer-nota{
+  margin-top:6px;
+  font-size:12px;
+  opacity:.85;
+}
+
 /* ===================== NOTEBOOK ===================== */
 @media (max-width:1366px){
   .camera-wrapper{
@@ -1262,8 +1458,8 @@ footer p{
   .habilidades-fotos{
     grid-template-columns:repeat(3,1fr);
   }
-  .sobre-container{
-    gap:50px;
+  .s-texto{
+    padding-left:8px;
   }
   .projeto-carousel{
     border-radius:16px;
@@ -1325,18 +1521,27 @@ footer p{
     max-width:100%;
   }
 
-  .sobre-container{
+  /* Sobre mim: vira coluna única (cada item em sequência, sem sobrepor) */
+  .sobre-board{
+    display:flex;
     flex-direction:column;
+    align-items:center;
+    gap:40px;
+    min-height:0;
   }
 
-  .sobre-img{
-    width:70%;
+  .s-item{
+    position:relative;
   }
 
-  .sobre-img.duo{
-    flex:none;
-    width:min(100%,420px);
-  }
+  .s-titulo{ order:0; text-align:center; justify-self:auto; }
+  .s-foto1{ order:1; width:min(70%,300px); max-width:none; margin-top:0; }
+  .s-texto{ order:2; width:100%; max-width:560px; padding-left:0; }
+  .s-foto2{ order:3; width:min(64%,280px); max-width:none; }
+  .s-foto3{ order:4; width:min(92%,420px); max-width:none; margin-top:0; }
+
+  .flor-1{ width:56px; right:-20px; top:-26px; }
+  .flor-2{ width:46px; right:-34px; top:8px; }
 
   .certificados-destaque{
     margin-bottom:60px;
@@ -1411,12 +1616,12 @@ footer p{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .sobre-img{
-    width:100%;
-  }
-
   .projeto-carousel{
     border-radius:14px;
+  }
+
+  .aviso-academico{
+    margin-bottom:56px;
   }
 
   /* contato */
@@ -1561,8 +1766,12 @@ footer p{
     margin-bottom:40px;
   }
 
-  .sobre-texto p{
-    font-size:15px;
+  .projetos-section .section-heading{
+    margin-bottom:20px;
+  }
+
+  .s-texto p{
+    font-size:15.5px;
   }
 
   .projetos-lista{
@@ -1571,6 +1780,13 @@ footer p{
 
   .projeto-info p{
     font-size:15px;
+  }
+
+  .selo-academico{
+    top:10px;
+    left:10px;
+    font-size:9px;
+    padding:4px 9px;
   }
 
   .habilidades-fotos{

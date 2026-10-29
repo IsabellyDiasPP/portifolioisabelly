@@ -9,9 +9,36 @@
 </head>
 <body>
 
-<!-- ícone de PDF reutilizado nos botões -->
+<!-- ícones reutilizados (PDF + flores do "Sobre mim") -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="ico-pdf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></g></symbol>
+
+<symbol id="ico-flor-vermelha" viewBox="0 0 100 100">
+<g fill="#d71f2b">
+<ellipse cx="50" cy="24" rx="15" ry="22"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(45 50 50)"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(90 50 50)"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(135 50 50)"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(180 50 50)"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(225 50 50)"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(270 50 50)"/>
+<ellipse cx="50" cy="24" rx="15" ry="22" transform="rotate(315 50 50)"/>
+</g>
+<circle cx="50" cy="50" r="12" fill="#7a0d14"/>
+<circle cx="50" cy="50" r="6" fill="#f6c343"/>
+</symbol>
+
+<symbol id="ico-flor-amarela" viewBox="0 0 100 100">
+<g fill="#f5a81c">
+<ellipse cx="50" cy="22" rx="17" ry="20"/>
+<ellipse cx="50" cy="22" rx="17" ry="20" transform="rotate(72 50 50)"/>
+<ellipse cx="50" cy="22" rx="17" ry="20" transform="rotate(144 50 50)"/>
+<ellipse cx="50" cy="22" rx="17" ry="20" transform="rotate(216 50 50)"/>
+<ellipse cx="50" cy="22" rx="17" ry="20" transform="rotate(288 50 50)"/>
+</g>
+<circle cx="50" cy="50" r="11" fill="#e2751b"/>
+<circle cx="50" cy="50" r="5" fill="#fff3c4"/>
+</symbol>
 </svg>
 
 <nav class="navbar">
@@ -22,12 +49,12 @@
 <li><a href="#sobre">Sobre</a></li>
 <li><a href="#projetos">Projetos</a></li>
 <li><a href="#habilidades">Habilidades</a></li>
-<li><a href="#certificados">Certificados</a></li>
+<li><a href="#certificados">Formação</a></li>
 <li><a href="#contato">Contato</a></li>
 </ul>
 </nav>
 
-<!-- ===================== HOME ===================== -->
+<!-- ===================== HOME (versão antiga restaurada) ===================== -->
 <section class="hero" id="home">
 <div class="camera-fixa">
 <div class="camera-wrapper">
@@ -93,61 +120,80 @@
 <span class="portfolio-text">PORTFOLIO</span>
 </h1>
 <div class="search-bar">
-<input readonly="" type="text" value="Por Isabelly Dias Gonçalves"/>
+<input readonly="" type="text" value="por Isabelly Dias Gonçalves"/>
 </div>
 </div>
 </section>
 
 <!-- ===================== SOBRE MIM ===================== -->
 <section class="sobre-section" id="sobre">
-<div class="sobre-container">
-<div class="sobre-img duo reveal">
-<img class="foto-1" alt="Foto de Isabelly Dias Gonçalves" src="IMG/isa.JPG"/>
-<img class="foto-2" alt="Foto de Isabelly Dias Gonçalves 2" src="IMG/isa2.JPG"/>
-</div>
-<div class="sobre-texto reveal">
+<!-- colagem em grid (sem sobreposição): título, polaroid + flores, texto, polaroid inclinada e TV retrô
+     Fotos: IMG/isa.JPG, IMG/fotoisa.jpeg -->
+<div class="sobre-board">
+
+<div class="s-item s-titulo reveal">
 <h2>Sobre <span class="destaque">mim</span></h2>
-<p>Sou estudante de Publicidade e Propaganda e, desde o início da minha trajetória acadêmica, venho desenvolvendo um olhar criativo e estratégico voltado para a comunicação, explorando a estética, a identidade visual e a direção criativa.
-A fotografia se tornou uma das minhas principais referências nesse processo, despertando uma percepção mais sensível aos detalhes e à maneira como as imagens podem transmitir conceitos, sensações e significados.
-<br>
-Este portfólio reúne projetos que refletem meu processo de aprendizado e experimentação, traduzindo minha dedicação à construção de repertório e à busca por novas formas de comunicar.</p>
 </div>
+
+<div class="s-item s-foto1 reveal">
+<svg class="flor flor-1" aria-hidden="true"><use href="#ico-flor-vermelha"/></svg>
+<svg class="flor flor-2" aria-hidden="true"><use href="#ico-flor-amarela"/></svg>
+<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves" src="IMG/isa.JPG"/></figure>
+</div>
+
+<div class="s-item s-texto reveal">
+<p>Sou estudante de Publicidade e Propaganda e, desde o início da minha trajetória acadêmica, venho desenvolvendo um olhar criativo e estratégico voltado para a comunicação, explorando a estética, a identidade visual e a direção criativa.</p>
+<p>A fotografia se tornou uma das minhas principais referências nesse processo, despertando uma percepção mais sensível aos detalhes e à maneira como as imagens podem transmitir conceitos, sensações e significados.</p>
+<p>Este portfólio reúne projetos que refletem meu processo de aprendizado e experimentação, traduzindo minha dedicação à construção de repertório e à busca por novas formas de comunicar.</p>
+</div>
+
+<div class="s-item s-foto2 reveal">
+<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves 2" src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg"/></figure>
+</div>
+
+<div class="s-item s-foto3 reveal">
+<div class="tv"><img alt="Foto de Isabelly Dias Gonçalves 3" src="IMG/fotoisa.jpeg"/></div>
+</div>
+
 </div>
 </section>
 
 <!-- ===================== PROJETOS ===================== -->
 <section class="projetos-section" id="projetos">
 <div class="section-heading reveal">
-<span class="label">Portfólio</span>
 <h2>Meus <span class="destaque">Projetos</span></h2>
 </div>
+
+
+
 <div class="projetos-lista">
 
+<!-- 01 · DENIM -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Out of home — imagem 1" src="IMG/Out of home.png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Out of home — imagem 2" src="IMG/Out of home (1).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Out of home — imagem 3" src="IMG/Out of home (3).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Out of home — imagem 4" src="IMG/Out of home (6).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Out of home — imagem 5" src="IMG/Out of home (7).png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Ensaio Denim — imagem 1" src="IMG/jeans.png"/></div>
 </div>
 </div>
 <div class="projeto-info">
 <span class="projeto-num">01</span>
-<h3>Out of home</h3>
-<p>O desafio proposto foi elevar o posicionamento da Vivara, reforçando a joia como símbolo de celebração pessoal e a ideia de que o verdadeiro luxo está na autenticidade de cada história. A campanha buscou desenvolver peças de Out of Home (OOH) alinhado ao propósito de “Tornar cada história única e especial”. Explorei uma estética refinada, capaz de despertar desejo e fortalecer a percepção de exclusividade da marca, sem perder a leveza e a autenticidade presentes em seu posicionamento.</p>
+<h3>Ensaio Fotográfico | Denim</h3>
+<p>O desafio proposto foi desenvolver um projeto fotográfico focado no jeans, com o objetivo de mostrar que essa peça, muitas vezes tratada apenas como um item básico, é o verdadeiro pilar do estilo e do conforto no dia a dia. A partir da produção fotográfica realizada por mim, busquei explorar o movimento, a textura e a versatilidade do material, evidenciando sua força estética e seu potencial visual. A ideia foi elevar o jeans ao papel de protagonista da identidade do projeto, utilizando a fotografia para destacar como um clássico permanece atual, versátil e indispensável em qualquer guarda-roupa.</p>
 </div>
 </article>
 
-<article class="projeto reveal">
+<!-- 02 · VIEFIVE
+     Card: mostra só a IMAGEM (IMG/viefive.png).
+     Ao clicar em "Ver sobre o projeto": abre o modal com o VÍDEO + botão para ABRIR o PDF (nova aba, sem baixar).
+     Ajuste data-video / data-video-webm / data-pdf conforme os nomes dos seus arquivos. -->
+<article class="projeto reveal"
+         data-video="IMG/video.mp4"
+         data-video-webm="IMG/video.webm"
+         data-pdf="PDF/viefive.pdf"
+         data-pdf-texto="Abrir PDF do projeto">
 <div class="projeto-carousel">
-<div class="video-container">
-<video autoplay loop muted playsinline class="video-responsive">
-<source src="IMG/video.mp4" type="video/mp4">
-<source src="IMG/video.webm" type="video/webm">
-<p>Seu navegador não suporta vídeos. <a href="IMG/video.mp4">Baixe o arquivo aqui</a>.</p>
-</video>
+<div class="carousel-track">
+<div class="carousel-slide active"><img class="slide-img" alt="VieFive — capa do projeto" src="IMG/viefive.png"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -157,8 +203,44 @@ Este portfólio reúne projetos que refletem meu processo de aprendizado e exper
 </div>
 </article>
 
+<!-- 03 · MAIO VERMELHO -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
+<span class="selo-academico">Produção acadêmica</span>
+<div class="carousel-track">
+<div class="carousel-slide active"><img class="slide-img" alt="Campanha Maio Vermelho — imagem 1" src="IMG/campanha.jpeg"/></div>
+</div>
+</div>
+<div class="projeto-info">
+<span class="projeto-num">03</span>
+<h3>Campanha Publicitária | Maio Vermelho</h3>
+<p>O desafio foi desenvolver uma campanha para um órgão público capaz de gerar conscientização e impacto social. O Maio Vermelho foi o ponto de partida, com foco na prevenção e no diagnóstico precoce do câncer de boca entre marceneiros e trabalhadores da indústria madeireira, expostos ao pó de madeira. O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o cuidado no trabalho à atenção aos primeiros sinais da doença, transformando uma informação pouco conhecida em um alerta direto e relevante.</p>
+</div>
+</article>
+
+<!-- 04 · VIVARA OOH -->
+<article class="projeto reveal">
+<div class="projeto-carousel">
+
+<div class="carousel-track">
+<div class="carousel-slide active"><img class="slide-img" alt="Vivara OOH — imagem 1" src="IMG/Out of home.png"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 2" src="IMG/Out of home (1).png"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 3" src="IMG/Out of home (3).png"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 4" src="IMG/Out of home (6).png"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 5" src="IMG/Out of home (7).png"/></div>
+</div>
+</div>
+<div class="projeto-info">
+<span class="projeto-num">04</span>
+<h3>VIVARA | OOH</h3>
+<p>O desafio proposto foi elevar o posicionamento da Vivara, reforçando a joia como símbolo de celebração pessoal e a ideia de que o verdadeiro luxo está na autenticidade de cada história. A campanha buscou desenvolver peças de Out of Home (OOH) alinhado ao propósito de “Tornar cada história única e especial”. Explorei uma estética refinada, capaz de despertar desejo e fortalecer a percepção de exclusividade da marca, sem perder a leveza e a autenticidade presentes em seu posicionamento.</p>
+</div>
+</article>
+
+<!-- 05 · FOTOLIVRO -->
+<article class="projeto reveal">
+<div class="projeto-carousel">
+
 <div class="carousel-track">
 <div class="carousel-slide active"><img class="slide-img" alt="Fotolivro — imagem 1" src="IMG/Out of home (11).png"/></div>
 <div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 2" src="IMG/Out of home (12).png"/></div>
@@ -176,36 +258,34 @@ Este portfólio reúne projetos que refletem meu processo de aprendizado e exper
 </div>
 </div>
 <div class="projeto-info">
-<span class="projeto-num">03</span>
-<h3>Fotolivro</h3>
+<span class="projeto-num">05</span>
+<h3>Fotolivro Documental | Arte Feminina no Grafite Paulista</h3>
 <p>O desafio foi criar um fotolivro editorial capaz de construir uma narrativa visual por meio da fotografia. Para o projeto, abordamos o grafite feminino, buscando dar visibilidade a um cenário em que a produção de mulheres ainda recebe menos reconhecimento e espaço. A proposta foi destacar essas artistas e a força de seus trabalhos, incentivando um novo olhar sobre sua presença na arte urbana e transformando cada página em um espaço de expressão, reconhecimento e protagonismo.</p>
 </div>
 </article>
 
+<!-- 06 · UM PELO OUTRO (site)
+     Troque o href do botão "Visitar site" pelo link real do site. -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
+
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Ensaio Denim — imagem 1" src="IMG/Out of home (24).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 2" src="IMG/Out of home (25).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 3" src="IMG/Out of home (26).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 4" src="IMG/Out of home (27).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 5" src="IMG/Out of home (28).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 6" src="IMG/Out of home (29).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 7" src="IMG/Out of home (30).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 8" src="IMG/Out of home (31).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 9" src="IMG/Out of home (32).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Ensaio Denim — imagem 10" src="IMG/Out of home (33).png"/></div>
+<!-- Coloque os prints do site em IMG/ e ajuste os nomes abaixo (adicione mais slides se quiser) -->
+<div class="carousel-slide active"><img class="slide-img" alt="Um Pelo Outro Fazendo o Bem — imagem 1" src="IMG/site.png"/></div>
 </div>
 </div>
 <div class="projeto-info">
-<span class="projeto-num">04</span>
-<h3>Ensaio Fotográfico | Denim</h3>
-<p>O desafio proposto foi desenvolver um projeto fotográfico focado no jeans, com o objetivo de mostrar que essa peça, muitas vezes tratada apenas como um item básico, é o verdadeiro pilar do estilo e do conforto no dia a dia. A partir da produção fotográfica realizada por mim, busquei explorar o movimento, a textura e a versatilidade do material, evidenciando sua força estética e seu potencial visual. A ideia foi elevar o jeans ao papel de protagonista da identidade do projeto, utilizando a fotografia para destacar como um clássico permanece atual, versátil e indispensável em qualquer guarda-roupa.</p>
+<span class="projeto-num">06</span>
+<h3>Um Pelo Outro Fazendo o Bem | Site</h3>
+<p>Transformar o cuidado em uma experiência digital: esse foi o ponto de partida para criar o site da Associação Um Pelo Outro Fazendo o Bem. O projeto une identidade visual, teoria das cores e hierarquia tipográfica para transmitir acolhimento e fortalecer a comunicação da ONG. A interface foi desenvolvida com foco em usabilidade, acessibilidade e interatividade, o resultado aproxima pessoas da causa e transforma a navegação em um convite a fazer o bem.</p>
+<a class="btn-pdf btn-site projeto-link" href="https://COLE-AQUI-O-LINK-DO-SITE.com.br" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
 </div>
 </article>
 
+<!-- 07 · L'ORÉAL FRESH -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
+
 <div class="carousel-track">
 <div class="carousel-slide active"><img class="slide-img" alt="L'Oréal Fresh — imagem 1" src="IMG/Out of home (36).png"/></div>
 <div class="carousel-slide"><img class="slide-img" alt="L'Oréal Fresh — imagem 2" src="IMG/Out of home (34).png"/></div>
@@ -214,23 +294,27 @@ Este portfólio reúne projetos que refletem meu processo de aprendizado e exper
 </div>
 </div>
 <div class="projeto-info">
-<span class="projeto-num">05</span>
-<h3>L'oréal Fresh</h3>
+<span class="projeto-num">07</span>
+<h3>L'Oréal Fresh</h3>
 <p>A partir de uma marca-mãe já consolidada, o projeto teve como objetivo desenvolver uma extensão de marca capaz de ampliar seu portfólio e explorar novas possibilidades de consumo. Assim, surgiu o L’Oréal Fresh, um spray bucal portátil pensado para acompanhar a rotina urbana, unindo praticidade à experiência de autocuidado da marca. A proposta envolveu pesquisa de mercado, construção do conceito e uma ativação de lançamento, com criação e montagem do stand, produção dos sprays, dinâmica interativa e distribuição de brindes. A experiência buscou apresentar o produto de forma visual e próxima do público.</p>
 </div>
 </article>
 
+<!-- 08 · TINDER — PREENCHER texto e imagens -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
+
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Campanha Publicitária — imagem 1" src="IMG/campanha.jpeg"/></div>
+<!-- Coloque as peças em IMG/ e ajuste os nomes abaixo -->
+<div class="carousel-slide active"><img class="slide-img" alt="Campanha Tinder — imagem 1" src="IMG/tinder-1.png"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 2" src="IMG/tinder-2.png"/></div>
 </div>
 </div>
 <div class="projeto-info">
-<span class="projeto-num">06</span>
-<h3>Campanha Publicitária</h3>
-<p>O desafio foi desenvolver uma campanha para um órgão público capaz de gerar conscientização e impacto social. O Maio Vermelho foi o ponto de partida, com foco na prevenção e no diagnóstico precoce do câncer de boca entre marceneiros e trabalhadores da indústria madeireira, expostos ao pó de madeira.
-O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o cuidado no trabalho à atenção aos primeiros sinais da doença, transformando uma informação pouco conhecida em um alerta direto e relevante.</p>
+<span class="projeto-num">08</span>
+<h3>Campanha Publicitária | Tinder</h3>
+<p>A partir do conceito “A parte que você não vê”, a campanha para o Tinder aborda a segurança como parte essencial da experiência de conhecer alguém. O projeto reúne conceito criativo, direção de arte e criação de peças que exploram a linguagem visual para transmitir a espontaneidade dos encontros e reforçar a importância da proteção nos bastidores.
+</p>
 </div>
 </article>
 
@@ -250,38 +334,45 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <img alt="Fotografia autoral 4" src="IMG/skill-foto4.jpg"/>
 </div>
 <div class="ferramentas stagger-group">
-<span class="tag">Photoshop</span>
-<span class="tag">Lightroom</span>
-<span class="tag">Premiere Pro</span>
 <span class="tag">Canva</span>
 <span class="tag">Figma</span>
+<span class="tag">Lightroom</span>
+<span class="tag">CapCut</span>
+<span class="tag">Storteling</span>
+<span class="tag">Branding</span>
+<span class="tag">Comunicação </span>
+<span class="tag">Marketing</span>
+<span class="tag">Direção de Arte </span>
+<span class="tag">Desing Gráfico</span>
 <span class="tag">Fotografia</span>
-<span class="tag">Edição de vídeo</span>
-<span class="tag">Direção de arte</span>
+<span class="tag">Eventos</span>
+<span class="tag">SAP</span>
+<span class="tag">Edição Audiovisual </span>
+<span class="tag">Microsoft Office  </span>
+<span class="tag">Microsoft Copilot</span>
 </div>
 </section>
 
-<!-- ===================== CERTIFICADOS =====================
+<!-- ===================== FORMAÇÃO / CERTIFICADOS =====================
   Para anexar o PDF: crie a pasta CERTIFICADOS ao lado do index.html e preencha
   data-pdf="CERTIFICADOS/nome-do-arquivo.pdf" (sem espaços/acentos).
   O PDF abre em nova aba. Vazio ("") = botão desativado "PDF em breve".
 -->
 <section class="certificados-section" id="certificados">
 <div class="section-heading reveal">
-<span class="label">Formação</span>
-<h2>Meus <span class="destaque">Certificados</span></h2>
+<h2><span class="destaque">Formação</span></h2>
 </div>
 
 <div class="certificados-destaque stagger-group">
 
 <article class="certificado-card destaque">
 <span class="cert-badge">Ensino superior</span>
-<h3>Publicidade e Propaganda</h3>
-<p class="cert-instituicao">Nome da faculdade</p>
-<p class="cert-descricao">Graduação com foco em comunicação, criação, direção de arte, fotografia e estratégia de marca.</p>
+<h3>Comunicação Social - Publicidade e Propaganda</h3>
+<p class="cert-instituicao">UNIP</p>
+<p class="cert-descricao">Formação em comunicação, criatividade e estratégia, com foco em criação publicitária, planejamento de campanhas, branding e marketing digital.</p>
 <div class="cert-rodape">
-<span class="cert-status andamento"><i class="ponto"></i>Em andamento</span>
-<a class="btn-pdf" data-pdf="" data-titulo="Publicidade e Propaganda" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir declaração</span></a>
+<span class="cert-status andamento"><i class="ponto"></i>Em andamento (2025-2028)</span>
+<a class="btn-pdf" data-pdf="" data-titulo="Comunicação Social - Publicidade e Propaganda" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir declaração</span></a>
 </div>
 </article>
 
@@ -289,9 +380,9 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <span class="cert-badge">Formação técnica</span>
 <h3>Curso Técnico em Administração</h3>
 <p class="cert-instituicao">ETEC</p>
-<p class="cert-descricao">Formação técnica voltada à gestão, organização de processos, planejamento e rotinas administrativas.</p>
+<p class="cert-descricao">Formação voltada à gestão organizacional, com conhecimentos em recursos humanos, finanças, marketing e planejamento empresarial.</p>
 <div class="cert-rodape">
-<span class="cert-status">Ano · Preencha aqui</span>
+<span class="cert-status">Concluído (2023-2024)</span>
 <a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — ETEC" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a>
 </div>
 </article>
@@ -300,36 +391,41 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <span class="cert-badge">Formação técnica</span>
 <h3>Curso Técnico em Administração</h3>
 <p class="cert-instituicao">SENAI</p>
-<p class="cert-descricao">Formação técnica em administração com foco em processos, planejamento e prática profissional.</p>
+<p class="cert-descricao">Formação com foco na prática profissional, desenvolvendo competências em processos administrativos, controle operacional e ferramentas de gestão.</p>
 <div class="cert-rodape">
-<span class="cert-status andamento"><i class="ponto"></i>Em andamento</span>
+<span class="cert-status andamento"><i class="ponto"></i>Em andamento (2026-2027)</span>
 <a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — SENAI" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir declaração</span></a>
 </div>
 </article>
 
 </div>
 
-<h3 class="certificados-subtitulo reveal">Cursos e <span class="destaque">certificações</span></h3>
+<h3 class="certificados-subtitulo reveal">Cursos e <span class="destaque">Certificações</span></h3>
 
 <div class="certificados-grid stagger-group">
-<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Gestão de Eventos (Marketing)</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Educação Financeira</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Informática Empresarial</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Introdução à Administração</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Introdução à Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>SAP Concur – Time de Campo</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="SAP Concur – Time de Campo" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Fundamentos da Inteligência Artificial</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Fundamentos e Ações da Economia Circular</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Fundamentos e Ações da Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Joint Educational Program on Multiple Myeloma</h3><p>ABHH, GBRAM e IMS · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Joint Educational Program on Multiple Myeloma" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Joint Program.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Veeva - Gestão de Eventos (Marketing)</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Veeva - Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Veeva - Gestão de Eventos (Marketing).pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Brand Fest</h3><p>UNIP · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Brand Fest" href="#"><svg width="14" height="14" aria-hidden="true"><use href="hhb"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Microsoft Copilot.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>FluêncIA - Fundamentos da Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="FluêncIA - Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="FLUÊNCIA - FUNDAMENTOS DA INTELIGÊNCIA ARTIFICIA.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Por dentro da Segurança Cibernética.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Sap Concur</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Sap Concur" href="#"><svg width="14" height="14" aria-hidden="true"><use href="SAP CONCUR.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Hematologia.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="etica.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="DESVENDANDO A DESCARBONIZAÇÃO.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Calendário de Marketing</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Calendário de Marketing" href="#"><svg width="14" height="14" aria-hidden="true"><use href="aa"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Fundamentos e ações para a economia circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Fundamentos e ações para a economia circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="fun-economiacircular.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="ACELERANDO A TRANSIÇÃO PARA A ECONOMIA CIRCULA.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="CICLOS DE RETORNO PARA ECONOMIA CIRCULA.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Altas Horas</h3><p>UNIP · 2025</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Altas Horas" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Parque Gráfico</h3><p>UNIP · 2025</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Parque Gráfico" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Educação Financeira</h3><p>Mundi · 2024</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Educação Financeira.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Introdução a Administração</h3><p>Fundação Bradesco · 2023</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Introdução a Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Introdução a Administração.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Informática Empresarial</h3><p>All Net · 2022</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="Infomatica Empresarial.pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 </div>
 </section>
 
-<!-- ===================== CONTATO ===================== -->
+<!-- ===================== CONTATO (versão antiga restaurada) ===================== -->
 <section class="contato-section" id="contato">
 <div class="contato-reveal reveal">
 <span class="label">Vamos conversar</span>
@@ -339,17 +435,19 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <div class="envelope">
 <div class="envelope-back"></div>
 <div class="postcard">
-<div class="postcard-stamp">✿</div>
-<span class="postcard-title">Postcard</span>
-<div class="postcard-body">
-<div class="postcard-msg"><p>INFORMAÇÕES PARA CONTATO</p></div>
-<div class="postcard-divider"></div>
-<div class="postcard-address">
-<a href="mailto:isabellydiasg85@gmail.com"><span>E-mail</span>isabellydiasg85@gmail.com</a>
-<a href="https://instagram.com/seuinstagram" target="_blank"><span>Instagram</span>@seuinstagram</a>
-<a href="https://www.linkedin.com/in/isabelly-dias-gonçalves-4bb9a3343?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank"><span>LinkedIn</span>/isabelly dias gonçalves</a>
-</div>
-</div>
+  <div class="postcard-stamp">✿</div>
+  <span class="postcard-title">Postcard</span>
+  <div class="postcard-body">
+    <div class="postcard-msg">
+      <p>If you want to be creative with me</p>
+    </div>
+    <div class="postcard-divider"></div>
+    <div class="postcard-address">
+      <a href="mailto:isabellydiasg85@gmail.com"><span>E-mail</span>isabellydiasg85@gmail.com</a>
+      <a href="https://instagram.com/seuinstagram" target="_blank"><span>Instagram</span>@seuinstagram</a>
+      <a href="https://www.linkedin.com/in/isabelly-dias-gonçalves-4bb9a3343?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank"><span>LinkedIn</span>/isabelly dias gonçalves</a>
+    </div>
+  </div>
 </div>
 <div class="envelope-front"></div>
 <div class="envelope-flap"></div>
@@ -358,6 +456,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <p class="envelope-dica" id="envelopeDica">Clique no envelope para fechar</p>
 <footer>
 <p>© 2026 Isabelly Dias Gonçalves. Todos os direitos reservados.</p>
+<p class="footer-nota">Portfólio de produções acadêmicas · Os projetos exibidos não representam trabalhos contratados pelas marcas citadas.</p>
 </footer>
 </section>
 
@@ -388,7 +487,11 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     }, 2000);
   });
 
-  // janela (modal) ao clicar nas imagens do projeto
+  // ===== janela (modal) ao clicar nas imagens do projeto =====
+  // Opcional por projeto (atributos no <article class="projeto">):
+  //   data-video="IMG/video.mp4"  data-video-webm="IMG/video.webm"  → vídeo dentro do modal
+  //   data-pdf="PDF/arquivo.pdf"  data-pdf-texto="Abrir PDF"         → botão que ABRE o PDF em nova aba (sem baixar)
+  //   <a class="projeto-link" href="https://...">                    → botão "Visitar site" também no modal
   const modal = document.createElement('div');
   modal.className = 'proj-modal';
   modal.setAttribute('role', 'dialog');
@@ -401,6 +504,8 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
       '<span class="proj-modal-num"></span>' +
       '<h3 class="proj-modal-title"></h3>' +
       '<div class="proj-modal-text"></div>' +
+      '<div class="proj-modal-acoes"></div>' +
+      '<p class="proj-modal-aviso"><strong>Produção acadêmica.</strong> Projeto desenvolvido para fins de estudo e aprendizado, sem vínculo comercial com as marcas ou instituições citadas.</p>' +
     '</div>';
   document.body.appendChild(modal);
 
@@ -409,7 +514,49 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   const modalNum = modal.querySelector('.proj-modal-num');
   const modalTitle = modal.querySelector('.proj-modal-title');
   const modalText = modal.querySelector('.proj-modal-text');
+  const modalAcoes = modal.querySelector('.proj-modal-acoes');
   let ultimoFoco = null;
+
+  function criarVideo(mp4, webm, poster) {
+    const v = document.createElement('video');
+    v.controls = true;
+    v.autoplay = true;
+    v.muted = true;          // necessário para o autoplay funcionar nos navegadores
+    v.playsInline = true;
+    v.preload = 'metadata';
+    if (poster) v.poster = poster;
+    if (mp4) {
+      const s = document.createElement('source');
+      s.src = encodeURI(mp4);
+      s.type = 'video/mp4';
+      v.appendChild(s);
+    }
+    if (webm) {
+      const s = document.createElement('source');
+      s.src = encodeURI(webm);
+      s.type = 'video/webm';
+      v.appendChild(s);
+    }
+    return v;
+  }
+
+  function criarBotao(href, texto, opcoes) {
+    const a = document.createElement('a');
+    a.className = 'btn-pdf' + (opcoes && opcoes.site ? ' btn-site' : '');
+    a.href = href;
+    a.target = '_blank';                    // abre em nova aba
+    a.rel = 'noopener noreferrer';
+    a.removeAttribute('download');          // ABRIR, não baixar
+    if (opcoes && opcoes.pdf) {
+      a.innerHTML = '<svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto"></span>';
+      a.setAttribute('aria-label', texto + ' (nova aba)');
+    } else {
+      a.innerHTML = '<span class="btn-pdf-texto"></span>';
+      a.setAttribute('aria-label', texto + ' (nova aba)');
+    }
+    a.querySelector('.btn-pdf-texto').textContent = texto;
+    return a;
+  }
 
   function abrirModal(article) {
     const num = article.querySelector('.projeto-num');
@@ -421,16 +568,40 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     modalTitle.textContent = tit ? tit.textContent : '';
     modalText.innerHTML = txt ? txt.innerHTML : '';
 
+    // mídia do topo: vídeo (se houver) ou imagem
     modalImg.innerHTML = '';
-    if (img) {
+    const videoMp4 = (article.dataset.video || '').trim();
+    const videoWebm = (article.dataset.videoWebm || '').trim();
+
+    if (videoMp4 || videoWebm) {
+      const poster = img ? (img.currentSrc || img.src) : '';
+      modalImg.appendChild(criarVideo(videoMp4, videoWebm, poster));
+      modalImg.style.display = 'block';
+    } else if (img) {
       const mini = document.createElement('img');
       mini.src = img.currentSrc || img.src;
       mini.alt = img.alt || '';
       modalImg.appendChild(mini);
       modalImg.style.display = 'block';
     } else {
-      modalImg.style.display = 'none'; // projeto com vídeo: só texto
+      modalImg.style.display = 'none';
     }
+
+    // botões de ação: PDF (abre em nova aba) e/ou site
+    modalAcoes.innerHTML = '';
+    const pdf = (article.dataset.pdf || '').trim();
+    if (pdf) {
+      modalAcoes.appendChild(
+        criarBotao(encodeURI(pdf), article.dataset.pdfTexto || 'Abrir PDF', { pdf: true })
+      );
+    }
+    const linkSite = article.querySelector('.projeto-link');
+    if (linkSite && linkSite.getAttribute('href')) {
+      modalAcoes.appendChild(
+        criarBotao(linkSite.getAttribute('href'), linkSite.textContent.trim() || 'Visitar site ↗', { site: true })
+      );
+    }
+    modalAcoes.style.display = modalAcoes.children.length ? 'flex' : 'none';
 
     ultimoFoco = document.activeElement;
     modal.classList.add('open');
@@ -441,6 +612,11 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   }
 
   function fecharModal() {
+    // pausa e remove o vídeo para o áudio não continuar tocando
+    const v = modalImg.querySelector('video');
+    if (v) v.pause();
+    modalImg.innerHTML = '';
+
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -472,6 +648,9 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 
   // certificados: botão que ABRE o PDF em nova aba (não baixa)
   document.querySelectorAll('.btn-pdf').forEach(btn => {
+    // ignora os botões que já são links diretos (ex.: "Visitar site" do card)
+    if (btn.classList.contains('projeto-link')) return;
+
     const caminho = (btn.dataset.pdf || '').trim();
     const titulo = btn.dataset.titulo || 'certificado';
     const texto = btn.querySelector('.btn-pdf-texto');
