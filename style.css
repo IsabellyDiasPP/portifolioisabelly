@@ -9,17 +9,17 @@
   --ink:#3a2f22;
 
   /* Recorte da "telinha" da câmera onde o rolo de fotos aparece.
-     Se ainda sobrar uma frestinha da cor de fundo (--bg) visível
-     nas bordas, aumente --tela-width/--tela-height de 1% em 1% (e
-     ajuste --tela-left/--tela-top na metade do valor que somar,
-     pra manter centralizado) até cobrir 100% do vidro da câmera.
-     Como a caixa fica escondida atrás da carcaça da câmera
-     (camera-img tem z-index maior), "passar um pouco" da área
-     nunca aparece — só "faltar" é que cria a fresta branca. */
+     Se sobrar uma frestinha da cor de fundo nas bordas, aumente
+     --tela-width/--tela-height de 1% em 1% (e ajuste --tela-left/--tela-top
+     na metade do valor somado, para manter centralizado). */
   --tela-top: -57%;
   --tela-left: 10.6%;
   --tela-width: 53%;
   --tela-height: 132%;
+
+  /* AJUSTES DA HOME (desktop/tablet) */
+  --camera-descida: 38%;   /* maior = câmera mais baixa (ex.: 45%) */
+  --rolo-duracao: 14s;     /* menor = fotos mais rápidas (ex.: 10s) */
 }
 
 /* RESET */
@@ -45,9 +45,6 @@ body{
   overflow-x:hidden;
 }
 
-/* Rede de segurança: nenhuma imagem do site deve conseguir
-   estourar a largura do container e criar rolagem horizontal,
-   mesmo que algum elemento pontual esqueça de definir width. */
 img{
   max-width:100%;
   height:auto;
@@ -170,7 +167,7 @@ section[id]{
   width:90%;
   max-width:780px;
   min-width:280px;
-  transform:translateY(18%);
+  transform:translateY(var(--camera-descida));
   opacity:0;
   animation:cameraFade 1.2s ease .1s forwards;
 }
@@ -189,66 +186,52 @@ section[id]{
   image-rendering:-webkit-optimize-contrast;
 }
 
-/* ===================== CÂMERA - LOOP INFINITO CORRIGIDO ===================== */
-.trilha-fotos {
-    position: absolute;
-    top: var(--tela-top);
-    left: var(--tela-left);
-    width: var(--tela-width);
-    height: var(--tela-height);
-    background: var(--ink);
-    overflow: hidden;
-    z-index: 15;
-    border-radius: 2px;
-    pointer-events: auto;
+/* ---------- rolo de fotos (loop infinito) ---------- */
+.trilha-fotos{
+  position:absolute;
+  top:var(--tela-top);
+  left:var(--tela-left);
+  width:var(--tela-width);
+  height:var(--tela-height);
+  background:var(--ink);
+  overflow:hidden;
+  z-index:15;
+  border-radius:2px;
+  pointer-events:auto;
 }
 
-.slider-track {
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
-    animation: rolarFotos 30s linear infinite; /* MAIS LENTO E SUAVE */
+.slider-track{
+  display:flex;
+  flex-direction:column;
+  will-change:transform;
+  animation:rolarFotos var(--rolo-duracao) linear infinite;
 }
 
-.grid-fotos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin-bottom: 6px;
-    padding: 0;
+.grid-fotos{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-bottom:6px;
+  padding:0;
+  flex-shrink:0;
 }
 
-.grid-fotos img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
-    background: var(--ink);
+.grid-fotos img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:0;
+  display:block;
+  background:var(--ink);
 }
 
-/* ANIMAÇÃO ININTERRUPTA - SEM GAPS */
-@keyframes rolarFotos {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-50%);
-    }
+@keyframes rolarFotos{
+  0%{ transform:translateY(0); }
+  100%{ transform:translateY(-50%); }
 }
 
-/* PAUSA AO PASSAR O MOUSE (OPCIONAL) */
-.trilha-fotos:hover .slider-track {
-    animation-play-state: paused;
-}
-
-/* GARANTE QUE O CONTAINER NUNCA MOSTRE FUNDO MARROM */
-.trilha-fotos {
-    background: var(--ink);
-}
-
-.grid-fotos {
-    flex-shrink: 0; /* IMPEDE ENCOLHER */
+.trilha-fotos:hover .slider-track{
+  animation-play-state:paused;
 }
 
 .conteudo-texto{
@@ -342,7 +325,7 @@ section[id]{
   color:var(--dark);
 }
 
-/* ===================== ANIMAÇÕES AO ROLAR (SCROLL REVEAL) ===================== */
+/* ===================== ANIMAÇÕES AO ROLAR ===================== */
 .reveal{
   opacity:0;
   transform:translateY(40px);
@@ -372,7 +355,7 @@ section[id]{
 .stagger-group.in-view > *:nth-child(5){ transition-delay:.45s; }
 .stagger-group.in-view > *:nth-child(6){ transition-delay:.55s; }
 .stagger-group.in-view > *:nth-child(7){ transition-delay:.65s; }
-.stagger-group.in-view > *:nth-child(8){ transition-delay:.75s; }
+.stagger-group.in-view > *:nth-child(n+8){ transition-delay:.75s; }
 
 /* ===================== SOBRE MIM ===================== */
 .sobre-section{
@@ -398,6 +381,37 @@ section[id]{
   object-fit:cover;
   border-radius:16px;
 }
+
+/* colagem com duas fotos */
+.sobre-img.duo{
+  position:relative;
+  flex:0 0 44%;
+  padding-bottom:20%;
+}
+
+.sobre-img.duo img{
+  border:8px solid #fff;
+  border-radius:6px;
+  box-shadow:0 22px 40px -16px rgba(0,0,0,.4);
+  transition:transform .5s ease;
+}
+
+.sobre-img.duo .foto-1{
+  display:block;
+  width:76%;
+  transform:rotate(-3deg);
+}
+
+.sobre-img.duo .foto-2{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:52%;
+  transform:rotate(5deg);
+}
+
+.sobre-img.duo .foto-1:hover{ transform:rotate(-1deg) scale(1.02); }
+.sobre-img.duo .foto-2:hover{ transform:rotate(3deg) scale(1.03); }
 
 .sobre-texto{
   flex:1;
@@ -443,67 +457,63 @@ section[id]{
   flex-direction:row-reverse;
 }
 
-/* Uma única imagem por slide, em object-fit:cover preenchendo
-   100% da caixa, com cantos arredondados e sombra suave.
-   Sem transform:scale no hover — sem efeito de "zoom". */
-/* ===================== CARROSSEL - TAMANHO CONTROLADO ===================== */
-.projeto-carousel {
-    flex: 0 0 52%;
-    min-width: 0;
-    max-width: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    background: var(--bg);
-    box-shadow: 0 25px 45px -18px rgba(0, 0, 0, 0.35);
+/* ---------- carrossel ---------- */
+.projeto-carousel{
+  flex:0 0 52%;
+  min-width:0;
+  max-width:100%;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:var(--bg);
+  box-shadow:0 25px 45px -18px rgba(0,0,0,.35);
 }
 
-.carousel-track {
-    position: relative;
-    width: 100%;
-    max-height: 600px; /* LIMITA ALTURA MÁXIMA */
-    overflow: hidden;
+.carousel-track{
+  position:relative;
+  width:100%;
+  max-height:600px;
+  overflow:hidden;
 }
 
-.carousel-slide {
-    display: none;
-    width: 100%;
-    max-height: 600px; /* LIMITA ALTURA MÁXIMA */
-    opacity: 0;
-    transition: opacity 0.9s ease;
+.carousel-slide{
+  display:none;
+  width:100%;
+  max-height:600px;
+  opacity:0;
+  transition:opacity .9s ease;
 }
 
-.carousel-slide.active {
-    display: block;
-    opacity: 1;
+.carousel-slide.active{
+  display:block;
+  opacity:1;
 }
 
-.slide-img {
-    width: 100%;
-    max-height: 600px; /* LIMITA ALTURA MÁXIMA */
-    height: auto;
-    display: block;
-    object-fit: cover; /* CORTE PROPORCIONAL SEM DISTORÇÃO */
-    object-position: center;
-    background: #f5f3ef;
+.slide-img{
+  width:100%;
+  max-height:600px;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  background:#f5f3ef;
 }
 
-/* VÍDEO RESPONSIVO */
-.video-container {
-    position: relative;
-    width: 100%;
-    max-height: 600px;
-    overflow: hidden;
-    background: #1a1a1a;
+.video-container{
+  position:relative;
+  width:100%;
+  max-height:600px;
+  overflow:hidden;
+  background:#1a1a1a;
 }
 
-.video-responsive {
-    width: 100%;
-    max-height: 600px;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    background: #1a1a1a;
+.video-responsive{
+  width:100%;
+  max-height:600px;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  background:#1a1a1a;
 }
 
 .projeto-info{
@@ -534,8 +544,7 @@ section[id]{
   max-width:440px;
 }
 
-/* ===================== CLIQUE NA IMAGEM → JANELA DO PROJETO ===================== */
-/* o texto fica escondido na página e só aparece dentro da janela */
+/* ---------- clique na imagem → janela do projeto ---------- */
 .projeto-info p{
   display:none;
 }
@@ -549,7 +558,6 @@ section[id]{
   outline-offset:4px;
 }
 
-/* dica que aparece ao passar o mouse sobre as imagens */
 .projeto-carousel::after{
   content:'Ver sobre o projeto';
   position:absolute;
@@ -577,7 +585,6 @@ section[id]{
   transform:translate(-50%,0);
 }
 
-/* no celular não existe "hover": a dica fica sempre visível */
 @media (hover:none){
   .projeto-carousel::after{
     opacity:.9;
@@ -585,7 +592,6 @@ section[id]{
   }
 }
 
-/* fundo escurecido */
 .proj-modal{
   position:fixed;
   inset:0;
@@ -607,7 +613,6 @@ section[id]{
   visibility:visible;
 }
 
-/* cartão pequeno no centro */
 .proj-modal-card{
   position:relative;
   width:min(100%,520px);
@@ -763,12 +768,12 @@ section[id]{
   background:#fff;
 }
 
-/* ---------- 2 cards em destaque (topo) ---------- */
+/* 3 cards em destaque (faculdade, ETEC, SENAI) */
 .certificados-destaque{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
   gap:28px;
-  max-width:1100px;
+  max-width:1200px;
   margin:0 auto 80px;
 }
 
@@ -810,7 +815,6 @@ section[id]{
   overflow:hidden;
 }
 
-/* faixa vermelha no topo do card em destaque */
 .certificado-card.destaque::before{
   content:'';
   position:absolute;
@@ -821,7 +825,6 @@ section[id]{
   background:linear-gradient(90deg,var(--red),#e24a4a);
 }
 
-/* detalhe decorativo no canto */
 .certificado-card.destaque::after{
   content:'';
   position:absolute;
@@ -922,7 +925,7 @@ section[id]{
   50%{ box-shadow:0 0 0 7px rgba(199,30,30,0); }
 }
 
-/* ---------- botão que ABRE o PDF ---------- */
+/* botão que ABRE o PDF */
 .btn-pdf{
   display:inline-flex;
   align-items:center;
@@ -968,7 +971,6 @@ section[id]{
   pointer-events:none;
 }
 
-/* ---------- subtítulo da grade de demais certificados ---------- */
 .certificados-subtitulo{
   text-align:center;
   font-family:'Playfair Display', serif;
@@ -996,7 +998,6 @@ section[id]{
   margin-bottom:20px;
 }
 
-/* ---------- cena do envelope ---------- */
 .envelope-scene{
   display:flex;
   justify-content:center;
@@ -1009,6 +1010,20 @@ section[id]{
   width:min(88vw,460px);
   aspect-ratio:3/2;
   perspective:1600px;
+  cursor:pointer;
+}
+
+.envelope:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:8px;
+}
+
+.envelope-dica{
+  margin-top:-90px;
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--gray);
 }
 
 .envelope-back{
@@ -1104,6 +1119,22 @@ section[id]{
 @keyframes postcardFloat{
   0%,100%{ transform:translate(-50%,-40%) rotate(-4deg) scale(1); }
   50%{ transform:translate(-50%,-43%) rotate(-3deg) scale(1); }
+}
+
+/* ENVELOPE FECHADO (clique): cartão desce e some, aba fecha */
+.envelope-scene.in-view.fechado .postcard{
+  opacity:0;
+  transform:translate(-50%,12%) rotate(0deg) scale(.88);
+  z-index:2;
+  animation:none;
+  transition:transform .8s cubic-bezier(.5,0,.3,1) 0s,
+             opacity .5s ease .45s,
+             z-index 0s linear .4s;
+}
+
+.envelope-scene.in-view.fechado .envelope-flap{
+  transform:rotateX(0deg);
+  transition-delay:.55s;
 }
 
 .postcard-stamp{
@@ -1285,10 +1316,10 @@ footer p{
     flex-direction:column;
   }
 
-.projeto-carousel{
-  flex:none;
-  width:100%;
-}
+  .projeto-carousel{
+    flex:none;
+    width:100%;
+  }
 
   .projeto-info p{
     max-width:100%;
@@ -1302,9 +1333,12 @@ footer p{
     width:70%;
   }
 
-  /* certificados em destaque empilham em 1 coluna */
+  .sobre-img.duo{
+    flex:none;
+    width:min(100%,420px);
+  }
+
   .certificados-destaque{
-    grid-template-columns:1fr;
     margin-bottom:60px;
   }
 }
@@ -1381,25 +1415,74 @@ footer p{
     width:100%;
   }
 
-.projeto-carousel{
-  border-radius:14px;
-}
+  .projeto-carousel{
+    border-radius:14px;
+  }
 
+  /* contato */
   .envelope-scene{
-    padding:30px 0 100px;
+    padding:30px 0 80px;
+    width:100%;
+  }
+
+  .envelope{
+    width:92vw;
+    max-width:400px;
+    margin:0 auto;
+  }
+
+  .envelope-dica{
+    margin-top:-60px;
   }
 
   .postcard{
     width:86%;
-    padding:12px 14px;
+    max-width:340px;
+    padding:14px 16px 16px;
+    left:50%;
+    bottom:6%;
+    transform:translate(-50%,12%) rotate(0deg) scale(.88);
   }
 
-  .postcard-msg p{
-    font-size:16px;
+  .envelope-scene.in-view .postcard{
+    transform:translate(-50%,-35%) rotate(-3deg) scale(1);
+    animation:postcardFloatMobile 4s ease-in-out 1.8s infinite;
+  }
+
+  @keyframes postcardFloatMobile{
+    0%,100%{ transform:translate(-50%,-35%) rotate(-3deg) scale(1); }
+    50%{ transform:translate(-50%,-38%) rotate(-2deg) scale(1); }
+  }
+
+  .postcard-body{
+    flex-direction:column;
+    gap:12px;
+    margin-top:44px;
+  }
+
+  .postcard-divider{
+    width:100%;
+    height:1px;
+    background:rgba(0,0,0,.18);
+  }
+
+  .postcard-address{
+    gap:12px;
+    align-items:stretch;
   }
 
   .postcard-address a{
     font-size:15px;
+    padding-bottom:6px;
+    text-align:left;
+  }
+
+  .postcard-address a span{
+    font-size:10px;
+  }
+
+  .postcard-msg p{
+    font-size:17px;
   }
 
   .postcard-stamp{
@@ -1407,12 +1490,36 @@ footer p{
     height:44px;
     top:10px;
     right:12px;
+    font-size:18px;
   }
 
   .postcard-title{
     top:14px;
     left:14px;
     font-size:9px;
+    letter-spacing:2px;
+  }
+
+  .contato-section{
+    padding:80px 5vw 40px;
+  }
+
+  .contato-reveal{
+    margin-bottom:10px;
+  }
+
+  .contato-reveal h2{
+    font-size:clamp(24px,5vw,32px);
+  }
+
+  footer{
+    padding-top:20px;
+    margin-top:10px;
+  }
+
+  footer p{
+    font-size:12px;
+    padding:0 5vw;
   }
 }
 
@@ -1480,6 +1587,10 @@ footer p{
     font-size:13px;
   }
 
+  .certificados-destaque{
+    grid-template-columns:1fr;
+  }
+
   .certificados-grid{
     grid-template-columns:1fr;
   }
@@ -1504,157 +1615,48 @@ footer p{
   .envelope{
     width:94vw;
   }
-}
 
-@media (max-width:420px){
+  .contato-section{
+    padding:60px 4vw 30px;
+  }
+
+  .postcard{
+    width:90%;
+    padding:12px 12px 14px;
+    bottom:4%;
+  }
+
   .postcard-body{
-    flex-direction:column;
-    gap:8px;
-    margin-top:40px;
+    margin-top:38px;
+    gap:10px;
   }
-  .postcard-divider{
-    width:100%;
-    height:1px;
+
+  .postcard-msg p{
+    font-size:15px;
   }
+
   .postcard-address{
     gap:8px;
   }
-}
-/* ===================== CONTATO - RESPONSIVIDADE ===================== */
-@media (max-width: 768px) {
-    .postcard-body {
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 44px;
-    }
 
-    .postcard-divider {
-        width: 100%;
-        height: 1px;
-        background: rgba(0, 0, 0, 0.18);
-    }
+  .postcard-address a{
+    font-size:14px;
+  }
 
-    .postcard-address {
-        gap: 12px;
-        align-items: stretch;
-    }
+  .postcard-address a span{
+    font-size:8px;
+    letter-spacing:1px;
+  }
 
-    .postcard-address a {
-        font-size: 15px;
-        padding-bottom: 6px;
-        text-align: left;
-    }
-
-    .postcard-address a span {
-        font-size: 10px;
-    }
-
-    .postcard-msg p {
-        font-size: 17px;
-    }
-
-    .envelope-scene {
-        padding: 30px 0 80px;
-        width: 100%;
-    }
-
-    .envelope {
-        width: 92vw;
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    .postcard {
-        width: 86%;
-        max-width: 340px;
-        padding: 14px 16px 16px;
-        left: 50%;
-        bottom: 6%;
-        transform: translate(-50%, 12%) rotate(0deg) scale(0.88);
-    }
-
-    .envelope-scene.in-view .postcard {
-        transform: translate(-50%, -35%) rotate(-3deg) scale(1);
-        animation: postcardFloatMobile 4s ease-in-out 1.8s infinite;
-    }
-
-    @keyframes postcardFloatMobile {
-        0%, 100% { transform: translate(-50%, -35%) rotate(-3deg) scale(1); }
-        50% { transform: translate(-50%, -38%) rotate(-2deg) scale(1); }
-    }
-
-    .postcard-stamp {
-        width: 36px;
-        height: 44px;
-        top: 10px;
-        right: 12px;
-        font-size: 18px;
-    }
-
-    .postcard-title {
-        top: 14px;
-        left: 14px;
-        font-size: 9px;
-        letter-spacing: 2px;
-    }
-
-    .contato-section {
-        padding: 80px 5vw 40px;
-    }
-
-    .contato-reveal {
-        margin-bottom: 10px;
-    }
-
-    .contato-reveal h2 {
-        font-size: clamp(24px, 5vw, 32px);
-    }
-
-    footer {
-        padding-top: 20px;
-        margin-top: 10px;
-    }
-
-    footer p {
-        font-size: 12px;
-        padding: 0 5vw;
-    }
+  .envelope-scene.in-view .postcard{
+    transform:translate(-50%,-30%) rotate(-2deg) scale(1);
+  }
 }
 
-@media (max-width: 480px) {
-    .contato-section {
-        padding: 60px 4vw 30px;
-    }
-
-    .envelope {
-        width: 94vw;
-    }
-
-    .postcard {
-        width: 90%;
-        padding: 12px 12px 14px;
-        bottom: 4%;
-    }
-
-    .postcard-body {
-        margin-top: 38px;
-        gap: 10px;
-    }
-
-    .postcard-msg p {
-        font-size: 15px;
-    }
-
-    .postcard-address a {
-        font-size: 14px;
-    }
-
-    .postcard-address a span {
-        font-size: 8px;
-        letter-spacing: 1px;
-    }
-
-    .envelope-scene.in-view .postcard {
-        transform: translate(-50%, -30%) rotate(-2deg) scale(1);
-    }
+@media (prefers-reduced-motion:reduce){
+  .envelope-scene.in-view.fechado .postcard,
+  .envelope-scene.in-view.fechado .envelope-flap{
+    transition-duration:.01s;
+    transition-delay:0s;
+  }
 }

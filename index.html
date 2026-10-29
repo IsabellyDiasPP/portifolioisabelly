@@ -8,11 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Pinyon+Script&family=Poppins:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
+
+<!-- ícone de PDF reutilizado nos botões -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ico-pdf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></g></symbol>
+</svg>
+
 <nav class="navbar">
 <a class="nav-logo" href="#home">Isabelly<span>.</span></a>
-<div class="nav-toggle" id="navToggle">
-<span></span><span></span><span></span>
-</div>
+<div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
 <ul class="nav-links" id="navLinks">
 <li><a href="#home">Home</a></li>
 <li><a href="#sobre">Sobre</a></li>
@@ -27,65 +31,59 @@
 <section class="hero" id="home">
 <div class="camera-fixa">
 <div class="camera-wrapper">
-<img class="camera-img" src="IMG/camera.png"/>
-<!-- ESTRUTURA CORRIGIDA DA CÂMERA COM 6 CÓPIAS -->
+<img class="camera-img" src="IMG/camera.png" alt=""/>
 <div class="trilha-fotos">
-    <div class="slider-track" id="sliderTrack">
-        <!-- CÓPIA 1 - ORIGINAL -->
-        <div class="grid-fotos">
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="Foto 1" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="Foto 2" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="Foto 3" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="Foto 4" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="Foto 5" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="Foto 6" loading="lazy"/>
-        </div>
-        <!-- CÓPIA 2 -->
-        <div class="grid-fotos" aria-hidden="true">
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="Foto 7" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="Foto 8" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23.jpeg" alt="Foto 9" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.24.jpeg" alt="Foto 10" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="Foto 11" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="Foto 12" loading="lazy"/>
-        </div>
-        <!-- CÓPIA 3 -->
-        <div class="grid-fotos" aria-hidden="true">
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="Foto 13" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="Foto 14" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="Foto 15" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="Foto 16" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="Foto 17" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="Foto 18" loading="lazy"/>
-        </div>
-        <!-- CÓPIA 4 (DUPLICADA - GARANTE SEAMLESS LOOP) -->
-        <div class="grid-fotos" aria-hidden="true">
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="Foto 19" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="Foto 20" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="Foto 21" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="Foto 22" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="Foto 23" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="Foto 24" loading="lazy"/>
-        </div>
-        <!-- CÓPIA 5 (DUPLICADA) -->
-        <div class="grid-fotos" aria-hidden="true">
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="Foto 25" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="Foto 26" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23.jpeg" alt="Foto 27" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.24.jpeg" alt="Foto 28" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="Foto 29" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="Foto 30" loading="lazy"/>
-        </div>
-        <!-- CÓPIA 6 (DUPLICADA) -->
-        <div class="grid-fotos" aria-hidden="true">
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="Foto 31" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="Foto 32" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="Foto 33" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="Foto 34" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="Foto 35" loading="lazy"/>
-            <img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="Foto 36" loading="lazy"/>
-        </div>
-    </div>
+<div class="slider-track" id="sliderTrack">
+<div class="grid-fotos">
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="Foto 1" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="Foto 2" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="Foto 3" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="Foto 4" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="Foto 5" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="Foto 6" loading="lazy"/>
+</div>
+<div class="grid-fotos" aria-hidden="true">
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.24.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="" loading="lazy"/>
+</div>
+<div class="grid-fotos" aria-hidden="true">
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="" loading="lazy"/>
+</div>
+<!-- cópias 4, 5 e 6 repetem as cópias 1, 2 e 3 (loop sem emendas) -->
+<div class="grid-fotos" aria-hidden="true">
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="" loading="lazy"/>
+</div>
+<div class="grid-fotos" aria-hidden="true">
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.24.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg" alt="" loading="lazy"/>
+</div>
+<div class="grid-fotos" aria-hidden="true">
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.22.jpeg" alt="" loading="lazy"/>
+<img src="IMG/WhatsApp Image 2026-04-11 at 16.29.23 (1).jpeg" alt="" loading="lazy"/>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -95,7 +93,7 @@
 <span class="portfolio-text">PORTFOLIO</span>
 </h1>
 <div class="search-bar">
-<input readonly="" type="text" value="Isabelly Dias Gonçalves"/>
+<input readonly="" type="text" value="Por Isabelly Dias Gonçalves"/>
 </div>
 </div>
 </section>
@@ -103,8 +101,9 @@
 <!-- ===================== SOBRE MIM ===================== -->
 <section class="sobre-section" id="sobre">
 <div class="sobre-container">
-<div class="sobre-img reveal">
-<img alt="Foto de Isabelly Dias Gonçalves" src="IMG/isa.JPG"/>
+<div class="sobre-img duo reveal">
+<img class="foto-1" alt="Foto de Isabelly Dias Gonçalves" src="IMG/isa.JPG"/>
+<img class="foto-2" alt="Foto de Isabelly Dias Gonçalves 2" src="IMG/isa2.JPG"/>
 </div>
 <div class="sobre-texto reveal">
 <h2>Sobre <span class="destaque">mim</span></h2>
@@ -141,22 +140,21 @@ Este portfólio reúne projetos que refletem meu processo de aprendizado e exper
 </div>
 </article>
 
-<!-- ===================== PROJETO VIE FIVE COM VÍDEO ===================== -->
 <article class="projeto reveal">
-    <div class="projeto-carousel">
-        <div class="video-container">
-            <video autoplay loop muted playsinline class="video-responsive">
-                <source src="IMG/video.mp4" type="video/mp4">
-                <source src="IMG/video.webm" type="video/webm">
-                <p>Seu navegador não suporta vídeos. <a href="IMG/video.mp4">Baixe o arquivo aqui</a>.</p>
-            </video>
-        </div>
-    </div>
-    <div class="projeto-info">
-        <span class="projeto-num">02</span>
-        <h3>VieFive</h3>
-        <p>A VieFive surgiu com o propósito de oferecer snacks funcionais para o público universitário, como uma alternativa aos energéticos tradicionais, incentivando uma rotina com mais foco, equilíbrio e bem-estar. A partir desse conceito, desenvolvi a identidade visual da marca e seu MIV, além da direção, captação e edição do vídeo principal da campanha. O projeto buscou traduzir a proposta da marca em uma linguagem visual jovem e próxima da rotina universitária, explorando elementos que reforçam a ideia de energia e praticidade.</p>
-    </div>
+<div class="projeto-carousel">
+<div class="video-container">
+<video autoplay loop muted playsinline class="video-responsive">
+<source src="IMG/video.mp4" type="video/mp4">
+<source src="IMG/video.webm" type="video/webm">
+<p>Seu navegador não suporta vídeos. <a href="IMG/video.mp4">Baixe o arquivo aqui</a>.</p>
+</video>
+</div>
+</div>
+<div class="projeto-info">
+<span class="projeto-num">02</span>
+<h3>VieFive</h3>
+<p>A VieFive surgiu com o propósito de oferecer snacks funcionais para o público universitário, como uma alternativa aos energéticos tradicionais, incentivando uma rotina com mais foco, equilíbrio e bem-estar. A partir desse conceito, desenvolvi a identidade visual da marca e seu MIV, além da direção, captação e edição do vídeo principal da campanha. O projeto buscou traduzir a proposta da marca em uma linguagem visual jovem e próxima da rotina universitária, explorando elementos que reforçam a ideia de energia e praticidade.</p>
+</div>
 </article>
 
 <article class="projeto reveal">
@@ -180,8 +178,7 @@ Este portfólio reúne projetos que refletem meu processo de aprendizado e exper
 <div class="projeto-info">
 <span class="projeto-num">03</span>
 <h3>Fotolivro</h3>
-<p> O desafio foi criar um fotolivro editorial capaz de construir uma narrativa visual por meio da fotografia. Para o projeto, abordamos o grafite feminino, buscando dar visibilidade a um cenário em que a produção de mulheres ainda recebe menos reconhecimento e espaço. A proposta foi destacar essas artistas e a força de seus trabalhos, incentivando um novo olhar sobre sua presença na arte urbana e transformando cada página em um espaço de expressão, reconhecimento e protagonismo.
-</p>
+<p>O desafio foi criar um fotolivro editorial capaz de construir uma narrativa visual por meio da fotografia. Para o projeto, abordamos o grafite feminino, buscando dar visibilidade a um cenário em que a produção de mulheres ainda recebe menos reconhecimento e espaço. A proposta foi destacar essas artistas e a força de seus trabalhos, incentivando um novo olhar sobre sua presença na arte urbana e transformando cada página em um espaço de expressão, reconhecimento e protagonismo.</p>
 </div>
 </article>
 
@@ -227,7 +224,6 @@ Este portfólio reúne projetos que refletem meu processo de aprendizado e exper
 <div class="projeto-carousel">
 <div class="carousel-track">
 <div class="carousel-slide active"><img class="slide-img" alt="Campanha Publicitária — imagem 1" src="IMG/campanha.jpeg"/></div>
-
 </div>
 </div>
 <div class="projeto-info">
@@ -265,14 +261,10 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 </div>
 </section>
 
-<!-- ===================== CERTIFICADOS ===================== -->
-<!--
-  COMO ANEXAR O PDF DE CADA CERTIFICADO
-  1) Crie uma pasta chamada CERTIFICADOS ao lado do index.html e coloque os PDFs lá.
-  2) No botão do card, preencha o atributo data-pdf com o caminho do arquivo.
-     Exemplo: data-pdf="CERTIFICADOS/etec-administracao.pdf"
-  3) Se data-pdf ficar vazio (""), o botão aparece desativado como "PDF em breve".
-  O PDF ABRE em uma nova aba (não baixa). Evite espaços e acentos nos nomes dos arquivos.
+<!-- ===================== CERTIFICADOS =====================
+  Para anexar o PDF: crie a pasta CERTIFICADOS ao lado do index.html e preencha
+  data-pdf="CERTIFICADOS/nome-do-arquivo.pdf" (sem espaços/acentos).
+  O PDF abre em nova aba. Vazio ("") = botão desativado "PDF em breve".
 -->
 <section class="certificados-section" id="certificados">
 <div class="section-heading reveal">
@@ -280,8 +272,18 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <h2>Meus <span class="destaque">Certificados</span></h2>
 </div>
 
-<!-- ======= 2 CERTIFICADOS EM DESTAQUE ======= -->
 <div class="certificados-destaque stagger-group">
+
+<article class="certificado-card destaque">
+<span class="cert-badge">Ensino superior</span>
+<h3>Publicidade e Propaganda</h3>
+<p class="cert-instituicao">Nome da faculdade</p>
+<p class="cert-descricao">Graduação com foco em comunicação, criação, direção de arte, fotografia e estratégia de marca.</p>
+<div class="cert-rodape">
+<span class="cert-status andamento"><i class="ponto"></i>Em andamento</span>
+<a class="btn-pdf" data-pdf="" data-titulo="Publicidade e Propaganda" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir declaração</span></a>
+</div>
+</article>
 
 <article class="certificado-card destaque">
 <span class="cert-badge">Formação técnica</span>
@@ -290,10 +292,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <p class="cert-descricao">Formação técnica voltada à gestão, organização de processos, planejamento e rotinas administrativas.</p>
 <div class="cert-rodape">
 <span class="cert-status">Ano · Preencha aqui</span>
-<a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — ETEC" href="#">
-<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
+<a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — ETEC" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a>
 </div>
 </article>
 
@@ -304,92 +303,29 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <p class="cert-descricao">Formação técnica em administração com foco em processos, planejamento e prática profissional.</p>
 <div class="cert-rodape">
 <span class="cert-status andamento"><i class="ponto"></i>Em andamento</span>
-<a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — SENAI" href="#">
-<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></svg>
-<span class="btn-pdf-texto">Abrir declaração</span>
-</a>
+<a class="btn-pdf" data-pdf="" data-titulo="Curso Técnico em Administração — SENAI" href="#"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir declaração</span></a>
 </div>
 </article>
 
 </div>
 
-<!-- ======= DEMAIS CERTIFICADOS ======= -->
 <h3 class="certificados-subtitulo reveal">Cursos e <span class="destaque">certificações</span></h3>
 
 <div class="certificados-grid stagger-group">
-
-<div class="certificado-card">
-<h3>Nome do curso 1</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 1" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 2</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 2" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 3</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 3" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 4</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 4" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 5</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 5" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 6</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 6" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 7</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 7" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
-<div class="certificado-card">
-<h3>Nome do curso 8</h3>
-<p>Instituição · Ano</p>
-<a class="btn-pdf pequeno" data-pdf="" data-titulo="Nome do curso 8" href="#">
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
-<span class="btn-pdf-texto">Abrir certificado</span>
-</a>
-</div>
-
+<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Gestão de Eventos (Marketing)</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Educação Financeira</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Informática Empresarial</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Introdução à Administração</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Introdução à Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>SAP Concur – Time de Campo</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="SAP Concur – Time de Campo" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Fundamentos da Inteligência Artificial</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Fundamentos e Ações da Economia Circular</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Fundamentos e Ações da Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Instituição · Ano</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 </div>
 </section>
 
@@ -406,20 +342,12 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <div class="postcard-stamp">✿</div>
 <span class="postcard-title">Postcard</span>
 <div class="postcard-body">
-<div class="postcard-msg">
-<p>INFORMAÇÕES PARA CONTATO</p>
-</div>
+<div class="postcard-msg"><p>INFORMAÇÕES PARA CONTATO</p></div>
 <div class="postcard-divider"></div>
 <div class="postcard-address">
-<a href="mailto:isabellydiasg85@gmail.com">
-<span>E-mail</span>isabellydiasg85@gmail.com
-</a>
-<a href="https://instagram.com/seuinstagram" target="_blank">
-<span>Instagram</span>@seuinstagram
-</a>
-<a href="https://www.linkedin.com/in/isabelly-dias-gonçalves-4bb9a3343?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank">
-<span>LinkedIn</span>/isabelly dias gonçalves
-</a>
+<a href="mailto:isabellydiasg85@gmail.com"><span>E-mail</span>isabellydiasg85@gmail.com</a>
+<a href="https://instagram.com/seuinstagram" target="_blank"><span>Instagram</span>@seuinstagram</a>
+<a href="https://www.linkedin.com/in/isabelly-dias-gonçalves-4bb9a3343?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank"><span>LinkedIn</span>/isabelly dias gonçalves</a>
 </div>
 </div>
 </div>
@@ -427,6 +355,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <div class="envelope-flap"></div>
 </div>
 </div>
+<p class="envelope-dica" id="envelopeDica">Clique no envelope para fechar</p>
 <footer>
 <p>© 2026 Isabelly Dias Gonçalves. Todos os direitos reservados.</p>
 </footer>
@@ -459,7 +388,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     }, 2000);
   });
 
-  // janela pequena (modal) que abre por cima ao clicar nas imagens do projeto
+  // janela (modal) ao clicar nas imagens do projeto
   const modal = document.createElement('div');
   modal.className = 'proj-modal';
   modal.setAttribute('role', 'dialog');
@@ -534,17 +463,14 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   });
 
   modal.addEventListener('click', e => {
-    if (e.target === modal) fecharModal(); // clicou fora do cartão
+    if (e.target === modal) fecharModal();
   });
   modal.querySelector('.proj-modal-close').addEventListener('click', fecharModal);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('open')) fecharModal();
   });
 
-  // ===================== CERTIFICADOS: botão que ABRE o PDF (não baixa) =====================
-  // Lê o atributo data-pdf de cada botão:
-  //  - preenchido  -> vira link que abre o PDF em uma nova aba (sem atributo "download")
-  //  - vazio ("")  -> botão desativado "PDF em breve"
+  // certificados: botão que ABRE o PDF em nova aba (não baixa)
   document.querySelectorAll('.btn-pdf').forEach(btn => {
     const caminho = (btn.dataset.pdf || '').trim();
     const titulo = btn.dataset.titulo || 'certificado';
@@ -564,7 +490,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     btn.setAttribute('href', encodeURI(caminho));
     btn.setAttribute('target', '_blank');
     btn.setAttribute('rel', 'noopener noreferrer');
-    btn.removeAttribute('download'); // garante que NÃO baixa, apenas abre
+    btn.removeAttribute('download');
     btn.setAttribute('aria-label', 'Abrir PDF: ' + titulo + ' (nova aba)');
   });
 
@@ -574,7 +500,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     navbar.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // animações de entrada ao rolar (reveal + stagger-group, inclui o envelope)
+  // animações de entrada ao rolar
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -587,6 +513,41 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   document.querySelectorAll('.reveal, .stagger-group').forEach(el => {
     revealObserver.observe(el);
   });
+</script>
+<script>
+// Envelope: clique (ou Enter/Espaço) fecha; clicar de novo reabre.
+// Cliques nos links do cartão (e-mail, Instagram, LinkedIn) NÃO fecham o envelope.
+(function () {
+  const cena = document.querySelector('.envelope-scene');
+  const envelope = document.querySelector('.envelope');
+  const dica = document.getElementById('envelopeDica');
+  if (!cena || !envelope) return;
+
+  envelope.setAttribute('tabindex', '0');
+  envelope.setAttribute('role', 'button');
+  envelope.setAttribute('aria-label', 'Abrir ou fechar o envelope');
+
+  function alternar() {
+    const fechado = cena.classList.toggle('fechado');
+    if (dica) {
+      dica.textContent = fechado
+        ? 'Clique no envelope para abrir'
+        : 'Clique no envelope para fechar';
+    }
+  }
+
+  envelope.addEventListener('click', function (e) {
+    if (e.target.closest('a')) return;
+    alternar();
+  });
+
+  envelope.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      alternar();
+    }
+  });
+})();
 </script>
 </body>
 </html>
