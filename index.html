@@ -188,7 +188,6 @@
      Ajuste data-video / data-video-webm / data-pdf conforme os nomes dos seus arquivos. -->
 <article class="projeto reveal"
          data-video="IMG/video.mp4"
-         data-video-webm="IMG/video.webm"
          data-pdf="IMG/Manual de Identidade Visual - MIV.pdf"
          data-pdf-texto="Abrir PDF do projeto">
 <div class="projeto-carousel">
@@ -488,10 +487,6 @@
   });
 
   // ===== janela (modal) ao clicar nas imagens do projeto =====
-  // Opcional por projeto (atributos no <article class="projeto">):
-  //   data-video="IMG/video.mp4"  data-video-webm="IMG/video.webm"  → vídeo dentro do modal
-  //   data-pdf="PDF/arquivo.pdf"  data-pdf-texto="Abrir PDF"         → botão que ABRE o PDF em nova aba (sem baixar)
-  //   <a class="projeto-link" href="https://...">                    → botão "Visitar site" também no modal
   const modal = document.createElement('div');
   modal.className = 'proj-modal';
   modal.setAttribute('role', 'dialog');
@@ -518,37 +513,37 @@
   let ultimoFoco = null;
 
   function criarVideo(mp4, webm, poster) {
-  const v = document.createElement('video');
-  v.setAttribute('muted', '');
-  v.setAttribute('playsinline', '');
-  v.setAttribute('webkit-playsinline', '');
-  v.muted = true;
-  v.controls = true;
-  v.playsInline = true;
-  v.preload = 'auto';
-  if (poster) v.poster = poster;
+    const v = document.createElement('video');
 
-  if (mp4) {
-    const s = document.createElement('source');
-    s.src = encodeURI(mp4);
-    s.type = 'video/mp4';
-    v.appendChild(s);
-  }
-  if (webm) {
-    const s = document.createElement('source');
-    s.src = encodeURI(webm);
-    s.type = 'video/webm';
-    v.appendChild(s);
-  }
+    // atributos necessários para reprodução inline em iOS/Android
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    v.playsInline = true;
+    v.controls = true;
+    v.preload = 'metadata';
+    if (poster) v.poster = poster;
 
-  v.addEventListener('loadedmetadata', () => {
-    const p = v.play();
-    if (p && p.catch) p.catch(() => {}); // se o celular bloquear, o usuário toca no play
-  });
+    // MP4 (H.264) PRIMEIRO: é o que iOS e Android tocam. WebM fica só como alternativa.
+    const fontes = [];
+    if (mp4)  fontes.push({ src: mp4,  type: 'video/mp4' });
+    if (webm) fontes.push({ src: webm, type: 'video/webm' });
 
-  // se o formato não for suportado, mostra um link para abrir o vídeo direto
-  v.addEventListener('error', () => {
-    if (mp4 && !v.parentNode.querySelector('.video-fallback')) {
+    let ultimaFonte = null;
+    fontes.forEach(f => {
+      const s = document.createElement('source');
+      s.src = encodeURI(f.src);
+      s.type = f.type;
+      v.appendChild(s);
+      ultimaFonte = s;
+    });
+
+    // mostra o botão de fallback uma única vez
+    function mostrarFallback() {
+      const pai = v.parentNode;
+      if (!pai || !mp4 || pai.querySelector('.video-fallback')) return;
       const a = document.createElement('a');
       a.className = 'btn-pdf video-fallback';
       a.href = encodeURI(mp4);
@@ -556,27 +551,43 @@
       a.rel = 'noopener noreferrer';
       a.textContent = 'Abrir vídeo em nova aba';
       a.style.margin = '14px';
-      v.parentNode.appendChild(a);
+      pai.appendChild(a);
     }
-  }, true);
 
-  v.load();
-  return v;
-}
+    // só considera falha se a ÚLTIMA fonte também falhou
+    // (antes, um 404 no .webm disparava o fallback mesmo com o MP4 funcionando)
+    if (ultimaFonte) ultimaFonte.addEventListener('error', mostrarFallback);
+    // erro de decodificação (codec não suportado pelo aparelho)
+    v.addEventListener('error', mostrarFallback);
+
+    // tenta dar play assim que houver dados; se o celular bloquear, o usuário toca no play
+    let tentouPlay = false;
+    function tentarPlay() {
+      if (tentouPlay) return;
+      tentouPlay = true;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+    v.addEventListener('loadeddata', tentarPlay);
+    v.addEventListener('canplay', tentarPlay);
+
+    v.load();
+    return v;
+  }
+
   function criarBotao(href, texto, opcoes) {
     const a = document.createElement('a');
     a.className = 'btn-pdf' + (opcoes && opcoes.site ? ' btn-site' : '');
     a.href = href;
-    a.target = '_blank';                    // abre em nova aba
+    a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    a.removeAttribute('download');          // ABRIR, não baixar
+    a.removeAttribute('download');
     if (opcoes && opcoes.pdf) {
       a.innerHTML = '<svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto"></span>';
-      a.setAttribute('aria-label', texto + ' (nova aba)');
     } else {
       a.innerHTML = '<span class="btn-pdf-texto"></span>';
-      a.setAttribute('aria-label', texto + ' (nova aba)');
     }
+    a.setAttribute('aria-label', texto + ' (nova aba)');
     a.querySelector('.btn-pdf-texto').textContent = texto;
     return a;
   }
@@ -598,8 +609,8 @@
 
     if (videoMp4 || videoWebm) {
       const poster = img ? (img.currentSrc || img.src) : '';
-      modalImg.appendChild(criarVideo(videoMp4, videoWebm, poster));
       modalImg.style.display = 'block';
+      modalImg.appendChild(criarVideo(videoMp4, videoWebm, poster));
     } else if (img) {
       const mini = document.createElement('img');
       mini.src = img.currentSrc || img.src;
@@ -631,13 +642,18 @@
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     modalCard.scrollTop = 0;
-    modalCard.focus();
+    modalCard.focus({ preventScroll: true });
   }
 
   function fecharModal() {
     // pausa e remove o vídeo para o áudio não continuar tocando
     const v = modalImg.querySelector('video');
-    if (v) v.pause();
+    if (v) {
+      v.pause();
+      v.removeAttribute('src');
+      v.querySelectorAll('source').forEach(s => s.remove());
+      v.load();
+    }
     modalImg.innerHTML = '';
 
     modal.classList.remove('open');
@@ -671,7 +687,6 @@
 
   // certificados: botão que ABRE o PDF em nova aba (não baixa)
   document.querySelectorAll('.btn-pdf').forEach(btn => {
-    // ignora os botões que já são links diretos (ex.: "Visitar site" do card)
     if (btn.classList.contains('projeto-link')) return;
 
     const caminho = (btn.dataset.pdf || '').trim();
@@ -715,41 +730,6 @@
   document.querySelectorAll('.reveal, .stagger-group').forEach(el => {
     revealObserver.observe(el);
   });
-</script>
-<script>
-// Envelope: clique (ou Enter/Espaço) fecha; clicar de novo reabre.
-// Cliques nos links do cartão (e-mail, Instagram, LinkedIn) NÃO fecham o envelope.
-(function () {
-  const cena = document.querySelector('.envelope-scene');
-  const envelope = document.querySelector('.envelope');
-  const dica = document.getElementById('envelopeDica');
-  if (!cena || !envelope) return;
-
-  envelope.setAttribute('tabindex', '0');
-  envelope.setAttribute('role', 'button');
-  envelope.setAttribute('aria-label', 'Abrir ou fechar o envelope');
-
-  function alternar() {
-    const fechado = cena.classList.toggle('fechado');
-    if (dica) {
-      dica.textContent = fechado
-        ? 'Clique no envelope para abrir'
-        : 'Clique no envelope para fechar';
-    }
-  }
-
-  envelope.addEventListener('click', function (e) {
-    if (e.target.closest('a')) return;
-    alternar();
-  });
-
-  envelope.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      alternar();
-    }
-  });
-})();
 </script>
 
 <script>

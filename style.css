@@ -791,6 +791,9 @@ section[id]{
 
 .proj-modal-img{
   margin:-26px -28px 22px;
+  overflow:hidden;
+  border-radius:20px 20px 0 0;
+  transform:translateZ(0); /* camada própria: evita vídeo preto no Safari/iOS */
 }
 
 .proj-modal-img img{
@@ -798,7 +801,7 @@ section[id]{
   width:100%;
   height:210px;
   object-fit:cover;
-  border-radius:20px 20px 0 0;
+  border-radius:0;
 }
 
 /* vídeo dentro do modal (projeto VieFive) */
@@ -808,7 +811,7 @@ section[id]{
   max-height:320px;
   object-fit:contain;
   background:#000;
-  border-radius:20px 20px 0 0;
+  border-radius:0;
 }
 
 .proj-modal-num{
