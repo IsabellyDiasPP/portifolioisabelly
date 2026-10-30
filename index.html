@@ -743,6 +743,26 @@ const revealObserver = new IntersectionObserver((entries) => {
   document.querySelectorAll('.reveal, .stagger-group').forEach(el => {
     revealObserver.observe(el);
   });
+  // ===== ABRIR E FECHAR O ENVELOPE =====
+const envelopeScene = document.querySelector('.envelope-scene');
+const envelope = document.querySelector('.envelope');
+const envelopeDica = document.getElementById('envelopeDica');
+
+if (envelopeScene && envelope) {
+  envelope.addEventListener('click', (e) => {
+
+    // Não fechar ao clicar nos links de contato
+    if (e.target.closest('a')) return;
+
+    envelopeScene.classList.toggle('fechado');
+
+    const estaFechado = envelopeScene.classList.contains('fechado');
+
+    envelopeDica.textContent = estaFechado
+      ? 'Clique no envelope para abrir'
+      : 'Clique no envelope para fechar';
+  });
+}
 </script>
 
 <script>
