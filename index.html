@@ -58,7 +58,7 @@
 <section class="hero" id="home">
 <div class="camera-fixa">
 <div class="camera-wrapper">
-<img class="camera-img" src="IMG/camera.png" alt=""/>
+<img class="camera-img" src="IMG/CAMERA3.png" alt=""/>
 <div class="trilha-fotos">
 <div class="slider-track" id="sliderTrack">
 <div class="grid-fotos">
@@ -748,6 +748,61 @@
       e.preventDefault();
       alternar();
     }
+  });
+})();
+</script>
+
+<script>
+// Rolo de fotos da câmera: repete as fotos até cobrir a altura da tela, sem buracos no loop
+(function () {
+  const track = document.getElementById('sliderTrack');
+  if (!track) return;
+  const janela = track.parentElement; // .trilha-fotos
+
+  // guarda os 3 blocos originais (os outros 3 são cópias deles)
+  const originais = Array.from(track.querySelectorAll('.grid-fotos'))
+    .slice(0, 3)
+    .map(b => b.cloneNode(true));
+
+  function clonar(bloco) {
+    const c = bloco.cloneNode(true);
+    c.setAttribute('aria-hidden', 'true');
+    c.querySelectorAll('img').forEach(img => {
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('alt', '');
+    });
+    return c;
+  }
+
+  function montar() {
+    const alvo = janela.clientHeight;
+    if (!alvo) return;
+
+    track.style.animation = 'none';
+    track.innerHTML = '';
+
+    // 1ª metade: repete os blocos até ficar mais alta que a janela
+    let i = 0;
+    do {
+      track.appendChild(clonar(originais[i % originais.length]));
+      i++;
+    } while (track.offsetHeight < alvo * 1.1 || i % originais.length !== 0);
+
+    // 2ª metade: cópia exata da 1ª (a animação anda -50%, então o loop fecha sem emenda)
+    Array.from(track.children).forEach(bloco => track.appendChild(clonar(bloco)));
+
+    // reinicia a animação
+    void track.offsetWidth;
+    track.style.animation = '';
+  }
+
+  montar();
+  window.addEventListener('load', montar);
+
+  let t;
+  window.addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(montar, 200);
   });
 })();
 </script>

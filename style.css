@@ -10,13 +10,13 @@
   --kraft-dark:#c9b088;
   --ink:#3a2f22;
 
-  --tela-top: -57%;
-  --tela-left: 10.6%;
-  --tela-width: 53%;
-  --tela-height: 132%;
+  --tela-top: -130%;
+  --tela-left: 10.5%;
+  --tela-width: 54.4%;
+  --tela-height: 214.9%;
 
-  --camera-descida: 20%;
-  --rolo-duracao: 5s;     /* fotos mais rápidas */
+  --camera-descida: 5%;
+  --rolo-duracao: 8s;
 }
 
 /* RESET */
@@ -1588,8 +1588,8 @@ footer .footer-nota{
   }
 
   .trilha-fotos{
-    top:-15%;
-    height:88.2%;
+    top:-30%;
+    height:114.9%;
   }
 
   .conteudo-texto{
