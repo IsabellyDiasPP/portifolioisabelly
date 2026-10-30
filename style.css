@@ -1,6 +1,6 @@
 :root{
-  --bg:#fcf8f0;          /* quase o original, só um pouquinho mais quente */
-  --bg-2:#fffdf8;
+  --bg:#fcf8f0;            /* fundo único, mais escurinho */
+  --bg-2:#fcf8f0;           /* igual ao --bg, para todas as seções ficarem na mesma cor */
   --card:#fffdf9;
   --dark:#1a1a1a;
   --red:#c71e1e;
@@ -15,8 +15,8 @@
   --tela-width: 53%;
   --tela-height: 132%;
 
-  --camera-descida: 38%;
-  --rolo-duracao: 8s;     /* fotos mais rápidas */
+  --camera-descida: 20%;
+  --rolo-duracao: 5s;     /* fotos mais rápidas */
 }
 
 /* RESET */
@@ -929,8 +929,16 @@ section[id]{
   font-weight:500;
   letter-spacing:.5px;
   cursor:default;
+  background:#f9d3dc; /* rosa pastel (padrão) */
   transition:background .3s ease, color .3s ease, transform .3s ease;
 }
+
+.tag:nth-child(6n+1){ background:#f9f6d3; } /* rosa */
+.tag:nth-child(6n+2){ background:#fbdcbc; } /* pêssego */
+.tag:nth-child(6n+3){ background:#fbf0b5; } /* amarelo */
+.tag:nth-child(6n+4){ background:#eecdcd; } /* menta */
+.tag:nth-child(6n+5){ background:#e1f3da; } /* azul céu */
+.tag:nth-child(6n+6){ background:#f3ddd3; } /* lavanda */
 
 .tag:hover{
   background:var(--dark);
@@ -1282,7 +1290,7 @@ section[id]{
   bottom:8%;
   width:80%;
   max-width:360px;
-  aspect-ratio:3/2;
+  aspect-ratio:3/2.3;
   background:#f2e1bb;
   background-image:repeating-linear-gradient(rgba(0,0,0,.02) 0 1px, transparent 1px 26px);
   border:1px solid rgba(0,0,0,.1);
@@ -1385,7 +1393,7 @@ section[id]{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  gap:14px;
+  gap:8px;
 }
 
 .postcard-address a{
@@ -1553,6 +1561,12 @@ footer .footer-nota{
   body{
     overflow:auto;
   }
+    /* Sobre mim (celular): título → 3 fotos → texto */
+  .s-titulo{ order:0; }
+  .s-foto1{ order:1; }
+  .s-foto2{ order:2; }
+  .s-foto3{ order:3; }
+  .s-texto{ order:4; }
 
   .hero{
     height:auto;
@@ -1641,6 +1655,8 @@ footer .footer-nota{
   }
 
   .postcard{
+    aspect-ratio:auto;
+    min-height:260px;
     width:86%;
     max-width:340px;
     padding:14px 16px 16px;
