@@ -28,6 +28,8 @@
 
 html{
   scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
 }
 
 html,body{
@@ -130,6 +132,8 @@ section[id]{
   gap:5px;
   cursor:pointer;
   z-index:210;
+  padding:10px;          /* área de toque maior no celular */
+  margin-right:-10px;
 }
 
 .nav-toggle span{
@@ -139,19 +143,21 @@ section[id]{
   transition:.3s;
 }
 
-/* ===================== HOME / CÂMERA (versão antiga restaurada) ===================== */
+/* ===================== HOME / CÂMERA ===================== */
 .hero{
   position:relative;
   width:100%;
   height:100vh;
+  height:100svh;   /* respeita a barra do navegador no celular */
   overflow:hidden;
 }
 
+/* câmera maior e mais encostada na esquerda, como na referência */
 .camera-fixa{
   position:absolute;
   left:0;
   bottom:0;
-  width:55%;
+  width:56%;
   z-index:10;
   display:flex;
   justify-content:center;
@@ -161,8 +167,9 @@ section[id]{
 
 .camera-wrapper{
   position:relative;
-  width:90%;
-  max-width:780px;
+  width:92%;
+  max-width:960px;
+  max-width:min(960px,120vh);
   min-width:280px;
   transform:translateY(var(--camera-descida));
   opacity:0;
@@ -195,6 +202,7 @@ section[id]{
   z-index:15;
   border-radius:2px;
   pointer-events:auto;
+  container-type:inline-size; /* permite usar cqw (largura da janela) no mosaico */
 }
 
 .slider-track{
@@ -204,24 +212,37 @@ section[id]{
   animation:rolarFotos var(--rolo-duracao) linear infinite;
 }
 
+/* MOSAICO: 3 colunas com fotos de alturas diferentes (como na referência).
+   Cada bloco tem 8 linhas; as 3 colunas somam 8 linhas, então o loop não tem emendas.
+   col 1: alta (5) + baixa (3) | col 2: baixa (3) + alta (5) | col 3: média (4) + média (4) */
 .grid-fotos{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:6px;
-  margin-bottom:6px;
+  grid-auto-rows:44px;      /* reserva para navegadores sem cqw */
+  grid-auto-rows:9cqw;
+  gap:5px;
+  margin-bottom:5px;
   padding:0;
   flex-shrink:0;
 }
 
 .grid-fotos img{
   width:100%;
-  aspect-ratio:3/4;
+  height:100%;
+  min-height:0;
   object-fit:cover;
   object-position:center;
-  border-radius:10px;
+  border-radius:8px;
   display:block;
   background:var(--ink);
 }
+
+.grid-fotos img:nth-child(1){ grid-column:1; grid-row:1 / span 5; }
+.grid-fotos img:nth-child(2){ grid-column:1; grid-row:6 / span 3; }
+.grid-fotos img:nth-child(3){ grid-column:2; grid-row:1 / span 3; }
+.grid-fotos img:nth-child(4){ grid-column:2; grid-row:4 / span 5; }
+.grid-fotos img:nth-child(5){ grid-column:3; grid-row:1 / span 4; }
+.grid-fotos img:nth-child(6){ grid-column:3; grid-row:5 / span 4; }
 
 @keyframes rolarFotos{
   0%{ transform:translateY(0); }
@@ -232,37 +253,59 @@ section[id]{
   animation-play-state:paused;
 }
 
+/* ---------- texto da home (igual à referência) ---------- */
 .conteudo-texto{
   position:absolute;
   right:0;
   top:0;
-  width:48%;
+  width:50%;
   height:100%;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  padding:0 4vw;
+  align-items:center;
+  padding:0 3.5vw 7vh 1vw;
   z-index:20;
 }
 
+/* bloco que agrupa título + busca: a busca alinha na direita do "PORTFOLIO" */
+.titulo-bloco{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  width:fit-content;
+  max-width:100%;
+}
+
+.titulo-bloco h1{
+  display:flex;
+  flex-direction:column;
+  align-items:center;       /* "Creative" centralizado sobre "PORTFOLIO" */
+  width:100%;
+  font-weight:400;
+}
+
 .creative-text{
+  display:block;
   font-family:'Pinyon Script', cursive;
-  font-size:clamp(56px,8vw,140px);
-  line-height:.7;
-  color:var(--dark);
+  font-weight:400;          /* sem negrito falso: fica fino como na referência */
+  font-size:clamp(56px,9vw,180px);
+  line-height:.8;
+  color:#111;
   opacity:0;
-  display:inline-block;
   animation:heroFade .9s ease .3s forwards;
 }
 
 .portfolio-text{
+  display:block;
   font-family:'Playfair Display', serif;
-  font-size:clamp(32px,5vw,90px);
+  font-weight:500;          /* mais leve que antes (800) */
+  font-size:clamp(32px,6.6vw,136px);
+  line-height:1;
+  letter-spacing:.005em;
+  margin-top:-.1em;
   color:var(--red);
-  font-weight:800;
-  letter-spacing:-2px;
   opacity:0;
-  display:inline-block;
   animation:heroFade .9s ease .6s forwards;
 }
 
@@ -271,26 +314,41 @@ section[id]{
   to{ opacity:1; transform:translateY(0); }
 }
 
+/* barra de busca: pequena, com lupa, alinhada à direita e bem abaixo do título */
 .search-bar{
-  margin-top:30px;
+  display:flex;
+  align-items:center;
+  gap:.8em;
+  width:52%;
+  min-width:210px;
+  margin-top:clamp(24px,9vh,120px);
+  padding:.8em 1.3em;
+  font-size:clamp(12px,1vw,18px);
   background:#fff;
-  border:1px solid var(--border);
-  border-radius:30px;
-  padding:12px 22px;
-  width:fit-content;
-  max-width:100%;
+  border:1px solid #ddd7cd;
+  border-radius:999px;
   opacity:0;
   animation:heroFade .9s ease .9s forwards;
 }
 
+.search-icon{
+  flex:none;
+  width:1.15em;
+  height:1.15em;
+  color:#9a948a;
+}
+
 .search-bar input{
+  flex:1;
+  min-width:0;
   border:none;
   outline:none;
-  width:260px;
-  max-width:100%;
-  font-size:15px;
-  color:var(--gray);
+  font-family:'Poppins', Arial, Helvetica, sans-serif;
+  font-size:1em;
+  font-weight:300;
+  color:#8a857d;
   background:transparent;
+  cursor:default;
 }
 
 /* ===================== TÍTULOS REUTILIZÁVEIS ===================== */
@@ -354,6 +412,7 @@ section[id]{
 .stagger-group.in-view > *:nth-child(6){ transition-delay:.55s; }
 .stagger-group.in-view > *:nth-child(7){ transition-delay:.65s; }
 .stagger-group.in-view > *:nth-child(n+8){ transition-delay:.75s; }
+.stagger-group.in-view.pronto > *{transition-delay:0s;}
 
 /* ===================== SOBRE MIM ===================== */
 .sobre-section{
@@ -749,6 +808,7 @@ section[id]{
   position:relative;
   width:min(100%,520px);
   max-height:86vh;
+  max-height:86dvh;
   overflow-y:auto;
   background:#fffaf1;
   border-radius:20px;
@@ -934,7 +994,7 @@ section[id]{
   letter-spacing:.5px;
   cursor:default;
   background:#f9d3dc; /* rosa pastel (padrão) */
-  transition:background .3s ease, color .3s ease, transform .3s ease;
+  transition:background .2s ease, color .2s ease, transform .2s ease;
 }
 
 .tag:nth-child(6n+1){ background:#f9f6d3; } /* rosa */
@@ -1187,7 +1247,7 @@ section[id]{
   margin:0 auto;
 }
 
-/* ===================== CONTATO (versão antiga restaurada) ===================== */
+/* ===================== CONTATO ===================== */
 .contato-section{
   padding:140px 8vw 60px;
   text-align:center;
@@ -1448,7 +1508,7 @@ footer .footer-nota{
 /* ===================== NOTEBOOK ===================== */
 @media (max-width:1366px){
   .camera-wrapper{
-    width:82%;
+    width:90%;
   }
   .conteudo-texto{
     width:50%;
@@ -1461,11 +1521,11 @@ footer .footer-nota{
     width:58%;
   }
   .camera-wrapper{
-    width:85%;
+    width:88%;
   }
   .conteudo-texto{
     width:54%;
-    padding:0 3vw;
+    padding:0 3vw 7vh 1vw;
   }
   .habilidades-fotos{
     grid-template-columns:repeat(3,1fr);
@@ -1490,6 +1550,7 @@ footer .footer-nota{
     width:70%;
     max-width:320px;
     height:100vh;
+    height:100dvh;
     background:var(--bg);
     flex-direction:column;
     justify-content:center;
@@ -1563,7 +1624,8 @@ footer .footer-nota{
 /* ===================== CELULAR ===================== */
 @media (max-width:768px){
   body{
-    overflow:auto;
+    overflow-x:hidden;   /* evita rolagem lateral (flores, fotos inclinadas) */
+    overflow-y:auto;
   }
     /* Sobre mim (celular): título → 3 fotos → texto */
   .s-titulo{ order:0; }
@@ -1575,6 +1637,7 @@ footer .footer-nota{
   .hero{
     height:auto;
     min-height:100vh;
+    min-height:100svh;
     display:flex;
     flex-direction:column;
   }
@@ -1605,22 +1668,27 @@ footer .footer-nota{
     align-items:center;
   }
 
+  .titulo-bloco{
+    align-items:center;
+  }
+
   .creative-text{
-    font-size:64px;
+    font-size:76px;
   }
 
   .portfolio-text{
-    font-size:38px;
+    font-size:44px;
   }
 
   .search-bar{
     width:100%;
     max-width:340px;
+    margin-top:28px;
+    font-size:13px;
   }
 
   .search-bar input{
     width:100%;
-    text-align:center;
   }
 
   .sobre-section,
@@ -1764,11 +1832,11 @@ footer .footer-nota{
   }
 
   .creative-text{
-    font-size:48px;
+    font-size:60px;
   }
 
   .portfolio-text{
-    font-size:28px;
+    font-size:34px;
   }
 
   .conteudo-texto{
@@ -1895,4 +1963,121 @@ footer .footer-nota{
     transition-duration:.01s;
     transition-delay:0s;
   }
+}
+
+/* =====================================================================
+   RESPONSIVIDADE EXTRA
+   ===================================================================== */
+
+/* ---------- telas grandes (monitores wide / 2K / 4K) ---------- */
+@media (min-width:1800px){
+  .camera-wrapper{ max-width:1100px; max-width:min(1100px,120vh); }
+  .search-bar{ font-size:clamp(12px,1vw,22px); }
+}
+
+@media (min-width:2400px){
+  .camera-wrapper{ max-width:1450px; max-width:min(1450px,120vh); }
+  .creative-text{ font-size:clamp(56px,9vw,300px); }
+  .portfolio-text{ font-size:clamp(32px,6.6vw,230px); }
+  .search-bar{ font-size:clamp(12px,1vw,28px); }
+  .sobre-board,
+  .projetos-lista{ max-width:1500px; }
+  .certificados-destaque,
+  .habilidades-fotos{ max-width:1500px; }
+  .certificados-grid{ max-width:1400px; }
+}
+
+/* ---------- desktop/notebook com tela BAIXA (janela pequena, 768p etc.) ---------- */
+@media (min-width:769px) and (max-height:620px){
+  .navbar{ padding-top:12px; padding-bottom:12px; }
+  .creative-text{ font-size:clamp(48px,min(9vw,17vh),180px); }
+  .portfolio-text{ font-size:clamp(28px,min(6.6vw,12vh),136px); }
+  .search-bar{ margin-top:14px; }
+}
+
+/* ---------- tablet em pé (iPad etc.): home empilhada, como no celular ---------- */
+@media (min-width:769px) and (max-width:1100px) and (orientation:portrait){
+  .hero{
+    height:auto;
+    min-height:100vh;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+  }
+  .camera-fixa{
+    position:relative;
+    width:100%;
+    margin-top:90px;
+  }
+  .camera-wrapper{
+    width:72%;
+    max-width:640px;
+    transform:none;
+  }
+  .trilha-fotos{
+    top:-30%;
+    height:114.9%;
+  }
+  .conteudo-texto{
+    position:relative;
+    width:100%;
+    height:auto;
+    padding:40px 5vw 70px;
+  }
+  .titulo-bloco{ align-items:center; }
+  .creative-text{ font-size:clamp(76px,13vw,130px); }
+  .portfolio-text{ font-size:clamp(44px,7.6vw,76px); }
+  .search-bar{
+    width:100%;
+    max-width:420px;
+    margin-top:32px;
+    font-size:15px;
+  }
+}
+
+/* ---------- celular: menu com toque confortável ---------- */
+@media (max-width:900px){
+  .nav-links a{
+    font-size:15px;
+    padding:8px 6px;
+  }
+}
+
+/* ---------- celular DEITADO (paisagem) ---------- */
+@media (max-width:768px) and (orientation:landscape){
+  .camera-fixa{ margin-top:70px; }
+  .camera-wrapper{ width:48%; }
+  .conteudo-texto{ padding:10px 20px 40px; }
+  .creative-text{ font-size:64px; }
+  .portfolio-text{ font-size:38px; }
+  .search-bar{ margin-top:18px; }
+  .proj-modal-img img{ height:150px; }
+  .proj-modal-img video{ max-height:200px; }
+}
+
+/* ---------- celulares bem pequenos (320-360px) ---------- */
+@media (max-width:360px){
+  .nav-logo{ font-size:19px; }
+  .creative-text{ font-size:52px; }
+  .portfolio-text{ font-size:30px; }
+  .search-bar{ font-size:12px; padding:.7em 1em; }
+  .section-heading h2{ font-size:26px; }
+  .s-titulo h2{ font-size:34px; }
+  .tag{ padding:7px 13px; font-size:12px; }
+  .btn-pdf{ padding:9px 16px; }
+  .proj-modal{ padding:10px; }
+  .proj-modal-card{ padding:20px 16px 24px; }
+  .proj-modal-img{ margin:-20px -16px 16px; }
+  .proj-modal-title{ font-size:21px; }
+  .postcard-msg p{ font-size:14px; }
+  .postcard-address a{ font-size:13px; }
+  .cert-badge{ font-size:10px; letter-spacing:1.4px; }
+}
+
+/* ---------- dispositivos sem mouse: sem "pulo" de hover nos cards ---------- */
+@media (hover:none){
+  .certificado-card:hover,
+  .certificado-card.destaque:hover{ transform:none; }
+  .habilidades-fotos img:hover{ transform:none; }
+  .tag:hover{ transform:none; }
 }
