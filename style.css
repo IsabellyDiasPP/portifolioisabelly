@@ -215,9 +215,10 @@ section[id]{
 
 .grid-fotos img{
   width:100%;
-  aspect-ratio:1/1;
+  aspect-ratio:3/4;
   object-fit:cover;
-  border-radius:0;
+  object-position:center;
+  border-radius:15px;
   display:block;
   background:var(--ink);
 }
