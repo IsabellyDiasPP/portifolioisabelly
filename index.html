@@ -8,14 +8,44 @@
 <link rel="icon" href="favicon.ico" sizes="any"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <title>Creative Portfolio — Isabelly Dias Gonçalves</title>
+
+<!-- ===== FONTES: conexão antecipada + display=block (nada de fonte errada piscando) ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,700&family=Pinyon+Script&family=Poppins:wght@300;400;500;600&family=Caveat:wght@600&display=block" rel="stylesheet"/>
+
+<!-- imagem principal da home carrega com prioridade -->
+<link rel="preload" as="image" href="IMG/CAMERA3.png"/>
+
 <link href="style.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;1,700&family=Pinyon+Script&family=Poppins:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
+
+<!-- segura as animações do topo até as fontes carregarem (máx. 3s) -->
+<script>
+(function () {
+  var html = document.documentElement;
+  html.classList.add('fonts-loading');
+  var liberar = function () { html.classList.remove('fonts-loading'); };
+  if (document.fonts && document.fonts.load) {
+    var t = 'AaÓçã';
+    Promise.all([
+      document.fonts.load('400 1em "Pinyon Script"', t),
+      document.fonts.load('500 1em "Playfair Display"', t),
+      document.fonts.load('800 1em "Playfair Display"', t),
+      document.fonts.load('400 1em "Poppins"', t)
+    ]).then(liberar, liberar);
+    setTimeout(liberar, 3000);
+  } else {
+    liberar();
+  }
+})();
+</script>
 </head>
 <body>
 
-<!-- ícones reutilizados (PDF + flores do "Sobre mim") -->
+<!-- ícones reutilizados (abrir arquivo + flores do "Sobre mim") -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<symbol id="ico-pdf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></g></symbol>
+<!-- NOVO ícone: "abrir em nova aba" (substitui o ícone de documento) -->
+<symbol id="ico-pdf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></g></symbol>
 
 <symbol id="ico-flor-vermelha" viewBox="0 0 100 100">
 <g fill="#d71f2b">
@@ -61,74 +91,35 @@
 <section class="hero" id="home">
   <div class="camera-fixa">
     <div class="camera-wrapper">
-      <img class="camera-img" src="IMG/CAMERA3.png" alt="" />
+      <img class="camera-img" src="IMG/CAMERA3.png" alt="" fetchpriority="high" decoding="async" />
 
       <div class="trilha-fotos">
         <div class="slider-track" id="sliderTrack">
 
-          <!-- ===== CICLO ORIGINAL (fotos 1 a 20) ===== -->
+          <!-- Só 3 blocos (15 fotos). O JavaScript repete esses blocos para formar o rolo infinito.
+               As fotos vêm de IMG/thumbs/ (versões leves, geradas pelo script otimizar-imagens.sh) -->
           <div class="grid-fotos">
-            <img src="IMG/feed1.jpg" alt="Foto 1" loading="lazy" />
-            <img src="IMG/feed2.JPG" alt="Foto 2" loading="lazy" />
-            <img src="IMG/feed3.JPG" alt="Foto 3" loading="lazy" />
-            <img src="IMG/feed4.JPG" alt="Foto 4" loading="lazy" />
-            <img src="IMG/feed5.JPG" alt="Foto 5" loading="lazy" />
+            <img src="IMG/feed1.jpg" alt="Foto 1" decoding="async" />
+            <img src="IMG/feed2.JPG" alt="Foto 2" decoding="async" />
+            <img src="IMG/feed3.JPG" alt="Foto 3" decoding="async" />
+            <img src="IMG/feed4.JPG" alt="Foto 4" decoding="async" />
+            <img src="IMG/feed5.JPG" alt="Foto 5" decoding="async" />
           </div>
 
           <div class="grid-fotos">
-            <img src="IMG/feed6.JPG" alt="Foto 6" loading="lazy" />
-            <img src="IMG/feed7.JPG" alt="Foto 7" loading="lazy" />
-            <img src="IMG/feed8.JPG" alt="Foto 8" loading="lazy" />
-            <img src="IMG/feed9.JPG" alt="Foto 9" loading="lazy" />
-            <img src="IMG/feed10.JPG" alt="Foto 10" loading="lazy" />
+            <img src="IMG/feed6.JPG" alt="Foto 6" decoding="async" />
+            <img src="IMG/feed7.JPG" alt="Foto 7" decoding="async" />
+            <img src="IMG/feed8.JPG" alt="Foto 8" decoding="async" />
+            <img src="IMG/feed9.JPG" alt="Foto 9" decoding="async" />
+            <img src="IMG/feed10.JPG" alt="Foto 10" decoding="async" />
           </div>
 
           <div class="grid-fotos">
-            <img src="IMG/feed11.JPG" alt="Foto 11" loading="lazy" />
-            <img src="IMG/feed12.JPG" alt="Foto 12" loading="lazy" />
-            <img src="IMG/feed13.HEIC" alt="Foto 13" loading="lazy" />
-            <img src="IMG/feed14.HEIC" alt="Foto 14" loading="lazy" />
-            <img src="IMG/feed15.JPG" alt="Foto 15" loading="lazy" />
-          </div>
-
-          <div class="grid-fotos">
-            <img src="IMG/feed16.JPG" alt="Foto 16" loading="lazy" />
-            <img src="IMG/feed17.PNG" alt="Foto 17" loading="lazy" />
-            <img src="IMG/feed18.JPG" alt="Foto 18" loading="lazy" />
-            <img src="IMG/feed19.JPG" alt="Foto 19" loading="lazy" />
-            <img src="IMG/feed20.JPG" alt="Foto 20" loading="lazy" />
-          </div>
-
-                    <div class="grid-fotos">
-            <img src="IMG/feed1.jpg" alt="Foto 1" loading="lazy" />
-            <img src="IMG/feed2.JPG" alt="Foto 2" loading="lazy" />
-            <img src="IMG/feed3.JPG" alt="Foto 3" loading="lazy" />
-            <img src="IMG/feed4.JPG" alt="Foto 4" loading="lazy" />
-            <img src="IMG/feed5.JPG" alt="Foto 5" loading="lazy" />
-          </div>
-
-          <div class="grid-fotos">
-            <img src="IMG/feed6.JPG" alt="Foto 6" loading="lazy" />
-            <img src="IMG/feed7.JPG" alt="Foto 7" loading="lazy" />
-            <img src="IMG/feed8.JPG" alt="Foto 8" loading="lazy" />
-            <img src="IMG/feed9.JPG" alt="Foto 9" loading="lazy" />
-            <img src="IMG/feed10.JPG" alt="Foto 10" loading="lazy" />
-          </div>
-
-          <div class="grid-fotos">
-            <img src="IMG/feed11.JPG" alt="Foto 11" loading="lazy" />
-            <img src="IMG/feed12.JPG" alt="Foto 12" loading="lazy" />
-            <img src="IMG/feed13.HEIC" alt="Foto 13" loading="lazy" />
-            <img src="IMG/feed14.HEIC" alt="Foto 14" loading="lazy" />
-            <img src="IMG/feed15.JPG" alt="Foto 15" loading="lazy" />
-          </div>
-
-          <div class="grid-fotos">
-            <img src="IMG/feed16.JPG" alt="Foto 16" loading="lazy" />
-            <img src="IMG/feed17.PNG" alt="Foto 17" loading="lazy" />
-            <img src="IMG/feed18.JPG" alt="Foto 18" loading="lazy" />
-            <img src="IMG/feed19.JPG" alt="Foto 19" loading="lazy" />
-            <img src="IMG/feed20.JPG" alt="Foto 20" loading="lazy" />
+            <img src="IMG/feed11.JPG" alt="Foto 11" decoding="async" />
+            <img src="IMG/feed12.JPG" alt="Foto 12" decoding="async" />
+            <img src="IMG/feed13.HEIC" alt="Foto 13" decoding="async" />
+            <img src="IMG/feed19.JPG" alt="Foto 14" decoding="async" />
+            <img src="IMG/feed16.JPG" alt="Foto 15" decoding="async" />
           </div>
 
         </div>
@@ -153,8 +144,6 @@
 
 <!-- ===================== SOBRE MIM ===================== -->
 <section class="sobre-section" id="sobre">
-<!-- colagem em grid (sem sobreposição): título, polaroid + flores, texto, polaroid inclinada e TV retrô
-     Fotos: IMG/isa.JPG, IMG/fotoisa.jpeg -->
 <div class="sobre-board">
 
 <div class="s-item s-titulo reveal">
@@ -164,7 +153,7 @@
 <div class="s-item s-foto1 reveal">
 <svg class="flor flor-1" aria-hidden="true"><use href="#ico-flor-vermelha"/></svg>
 <svg class="flor flor-2" aria-hidden="true"><use href="#ico-flor-amarela"/></svg>
-<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves" src="IMG/isa.JPG"/></figure>
+<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves" src="IMG/isa.JPG" loading="lazy" decoding="async"/></figure>
 </div>
 
 <div class="s-item s-texto reveal">
@@ -174,11 +163,11 @@
 </div>
 
 <div class="s-item s-foto2 reveal">
-<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves 2" src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg"/></figure>
+<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves 2" src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" loading="lazy" decoding="async"/></figure>
 </div>
 
 <div class="s-item s-foto3 reveal">
-<div class="tv"><img alt="Foto de Isabelly Dias Gonçalves 3" src="IMG/fotoisa.jpeg"/></div>
+<div class="tv"><img alt="Foto de Isabelly Dias Gonçalves 3" src="IMG/fotoisa.jpeg" loading="lazy" decoding="async"/></div>
 </div>
 
 </div>
@@ -190,15 +179,13 @@
 <h2>Meus <span class="destaque">Projetos</span></h2>
 </div>
 
-
-
 <div class="projetos-lista">
 
 <!-- 01 · DENIM -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Ensaio Denim — imagem 1" src="IMG/jeans.png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Ensaio Denim — imagem 1" src="IMG/jeans.png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -209,31 +196,27 @@
 </article>
 
 <!-- 02 · VIEFIVE
-     Card: mostra só a IMAGEM (IMG/viefive.png).
-     Ao clicar em "Ver sobre o projeto": abre o modal com o VÍDEO + botão para ABRIR o PDF (nova aba, sem baixar).
-     Ajuste data-video / data-video-webm / data-pdf conforme os nomes dos seus arquivos. -->
-<article class="projeto reveal"
-         data-video="IMG/video.mp4"
-         data-pdf="IMG/Manual de Identidade Visual - MIV.pdf"
-         data-pdf-texto="Abrir PDF do projeto">
+     Card: imagem + botão "Abrir PDF" (igual ao "Visitar site" do projeto 06).
+     Modal: vídeo + o mesmo botão de PDF. O PDF abre em nova aba (sem baixar). -->
+<article class="projeto reveal" data-video="IMG/video.mp4">
 <div class="projeto-carousel">
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="VieFive — capa do projeto" src="IMG/viefive.jpg"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="VieFive — capa do projeto" src="IMG/viefive.jpg" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
 <span class="projeto-num">02</span>
 <h3>VieFive</h3>
 <p>A VieFive surgiu com o propósito de oferecer snacks funcionais para o público universitário, como uma alternativa aos energéticos tradicionais, incentivando uma rotina com mais foco, equilíbrio e bem-estar. A partir desse conceito, desenvolvi a identidade visual da marca e seu MIV, além da direção, captação e edição do vídeo principal da campanha. O projeto buscou traduzir a proposta da marca em uma linguagem visual jovem e próxima da rotina universitária, explorando elementos que reforçam a ideia de energia e praticidade.</p>
+<a class="btn-pdf btn-site projeto-link" data-tipo="pdf" href="IMG/Manual de Identidade Visual - MIV.pdf" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir Manual de Identidade Visual</span></a>
 </div>
 </article>
 
 <!-- 03 · MAIO VERMELHO -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
-
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Campanha Maio Vermelho — imagem 1" src="IMG/campanha.jpeg"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Campanha Maio Vermelho — imagem 1" src="IMG/campanha.jpeg" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -247,13 +230,11 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <!-- 04 · VIVARA OOH -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
-
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Vivara OOH — imagem 1" src="IMG/Out of home.png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 2" src="IMG/Out of home (1).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 3" src="IMG/Out of home (3).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 4" src="IMG/Out of home (6).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 5" src="IMG/Out of home (7).png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Vivara OOH — imagem 1" src="IMG/Out of home - 16.png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 2" src="IMG/Out of home - 15.png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 3" src="IMG/Out of home - 14.png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Vivara OOH — imagem 4" src="IMG/Out of home - 13.png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -266,21 +247,20 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <!-- 05 · FOTOLIVRO -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
-
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Fotolivro — imagem 1" src="IMG/Out of home (11).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 2" src="IMG/Out of home (12).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 3" src="IMG/Out of home (13).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 4" src="IMG/Out of home (14).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 5" src="IMG/Out of home (15).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 6" src="IMG/Out of home (16).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 7" src="IMG/Out of home (17).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 8" src="IMG/Out of home (18).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 9" src="IMG/Out of home (19).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 10" src="IMG/Out of home (20).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 11" src="IMG/Out of home (21).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 12" src="IMG/Out of home (22).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 13" src="IMG/Out of home (23).png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Fotolivro — imagem 1" src="IMG/Out of home (11).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 2" src="IMG/Out of home (12).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 3" src="IMG/Out of home (13).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 4" src="IMG/Out of home (14).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 5" src="IMG/Out of home (15).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 6" src="IMG/Out of home (16).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 7" src="IMG/Out of home (17).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 8" src="IMG/Out of home (18).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 9" src="IMG/Out of home (19).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 10" src="IMG/Out of home (20).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 11" src="IMG/Out of home (21).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 12" src="IMG/Out of home (22).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Fotolivro — imagem 13" src="IMG/Out of home (23).png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -290,14 +270,11 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 </div>
 </article>
 
-<!-- 06 · UM PELO OUTRO (site)
-     Troque o href do botão "Visitar site" pelo link real do site. -->
+<!-- 06 · UM PELO OUTRO (site) -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
-
 <div class="carousel-track">
-<!-- Coloque os prints do site em IMG/ e ajuste os nomes abaixo (adicione mais slides se quiser) -->
-<div class="carousel-slide active"><img class="slide-img" alt="Um Pelo Outro Fazendo o Bem — imagem 1" src="IMG/site.png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Um Pelo Outro Fazendo o Bem — imagem 1" src="IMG/site.png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -311,12 +288,8 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <!-- 07 · L'ORÉAL FRESH -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
-
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="L'Oréal Fresh — imagem 1" src="IMG/Out of home (36).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="L'Oréal Fresh — imagem 2" src="IMG/Out of home (34).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="L'Oréal Fresh — imagem 3" src="IMG/Out of home (35).png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="L'Oréal Fresh — imagem 4" src="IMG/Out of home (37).png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="L'Oréal Fresh — imagem 1" src="IMG/spray.png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -326,14 +299,13 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 </div>
 </article>
 
-<!-- 08 · TINDER — PREENCHER texto e imagens -->
+<!-- 08 · TINDER -->
 <article class="projeto reveal">
 <div class="projeto-carousel">
-
 <div class="carousel-track">
-<!-- Coloque as peças em IMG/ e ajuste os nomes abaixo -->
-<div class="carousel-slide active"><img class="slide-img" alt="Campanha Tinder — imagem 1" src="IMG/tinder-1.png"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 2" src="IMG/tinder-2.png"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Campanha Tinder — imagem 1" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.” (1).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 2" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.” (2).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 3" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.”.png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -353,35 +325,34 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <h2>Minhas <span class="destaque">Habilidades</span></h2>
 </div>
 <div class="habilidades-fotos stagger-group">
-<img alt="Fotografia autoral 1" src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (3).jpeg"/>
-<img alt="Fotografia autoral 2" src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (2).jpeg"/>
-<img alt="Fotografia autoral 3" src="IMG/WhatsApp Image 2026-04-11 at 16.29.21.jpeg"/>
-<img alt="Fotografia autoral 4" src="IMG/WhatsApp Image 2026-04-11 at 16.29.21 (2).jpeg"/>
+<img alt="Fotografia autoral 1" src="IMG/PHOTO 1.png" loading="lazy" decoding="async"/>
+<img alt="Fotografia autoral 2" src="IMG/PHOTO 2.png" loading="lazy" decoding="async"/>
+<img alt="Fotografia autoral 3" src="IMG/PHOTO 3.png" loading="lazy" decoding="async"/>
+<img alt="Fotografia autoral 4" src="IMG/PHOTO 4.JPG" loading="lazy" decoding="async"/>
 </div>
 <div class="ferramentas stagger-group">
 <span class="tag">Canva</span>
 <span class="tag">Figma</span>
 <span class="tag">Lightroom</span>
 <span class="tag">CapCut</span>
-<span class="tag">Storteling</span>
+<span class="tag">Storytelling</span>
 <span class="tag">Branding</span>
-<span class="tag">Comunicação </span>
+<span class="tag">Comunicação</span>
 <span class="tag">Marketing</span>
-<span class="tag">Direção de Arte </span>
-<span class="tag">Desing Gráfico</span>
+<span class="tag">Direção de Arte</span>
+<span class="tag">Design Gráfico</span>
 <span class="tag">Fotografia</span>
 <span class="tag">Eventos</span>
 <span class="tag">SAP</span>
-<span class="tag">Edição Audiovisual </span>
-<span class="tag">Microsoft Office  </span>
+<span class="tag">Edição Audiovisual</span>
+<span class="tag">Microsoft Office</span>
 <span class="tag">Microsoft Copilot</span>
 </div>
 </section>
 
 <!-- ===================== FORMAÇÃO / CERTIFICADOS =====================
-  Para anexar o PDF: crie a pasta CERTIFICADOS ao lado do index.html e preencha
-  data-pdf="CERTIFICADOS/nome-do-arquivo.pdf" (sem espaços/acentos).
-  O PDF abre em nova aba. Vazio ("") = botão desativado "PDF em breve".
+  Os PDFs ficam na pasta CERTIFICADOS/ (nomes SEM acento, SEM espaço, minúsculos).
+  data-pdf vazio ("") = botão desativado "PDF em breve".
 -->
 <section class="certificados-section" id="certificados">
 <div class="section-heading reveal">
@@ -428,25 +399,25 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <h3 class="certificados-subtitulo reveal">Cursos e <span class="destaque">Certificações</span></h3>
 
 <div class="certificados-grid stagger-group">
-<div class="certificado-card"><h3>Joint Educational Program on Multiple Myeloma</h3><p>ABHH, GBRAM e IMS · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Joint Program.pdf" data-titulo="Joint Educational Program on Multiple Myeloma" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Veeva - Gestão de Eventos (Marketing)</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Veeva - Gestão de Eventos (Marketing).pdf" data-titulo="Veeva - Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Joint Educational Program on Multiple Myeloma</h3><p>ABHH, GBRAM e IMS · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/joint-program.pdf" data-titulo="Joint Educational Program on Multiple Myeloma" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Veeva - Gestão de Eventos (Marketing)</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/veeva-gestao-eventos.pdf" data-titulo="Veeva - Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Brand Fest</h3><p>UNIP · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Brand Fest" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Microsoft Copilot.pdf" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>FluêncIA - Fundamentos da Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/FLUÊNCIA - FUNDAMENTOS DA INTELIGÊNCIA ARTIFICIA.pdf" data-titulo="FluêncIA - Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Por dentro da Segurança Cibernética.pdf" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Sap Concur</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/SAP CONCUR.pdf" data-titulo="Sap Concur" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Hematologia.pdf" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/etica.pdf" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/DESVENDANDO A DESCARBONIZAÇÃO.pdf" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/microsoft-copilot.pdf" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>FluêncIA - Fundamentos da Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/fluencia-ia.pdf" data-titulo="FluêncIA - Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/seguranca-cibernetica.pdf" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Sap Concur</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/sap-concur.pdf" data-titulo="Sap Concur" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/hematologia.pdf" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/etica-ia.pdf" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/descarbonizacao.pdf" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Calendário de Marketing</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Calendário de Marketing" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Fundamentos e ações para a economia circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/fun-economiacircular.pdf" data-titulo="Fundamentos e ações para a economia circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/ACELERANDO A TRANSIÇÃO PARA A ECONOMIA CIRCULA.pdf" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/CICLOS DE RETORNO PARA ECONOMIA CIRCULA.pdf" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Fundamentos e ações para a economia circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/economia-circular-fundamentos.pdf" data-titulo="Fundamentos e ações para a economia circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/economia-circular-transicao.pdf" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/economia-circular-ciclos.pdf" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Altas Horas</h3><p>UNIP · 2025</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Altas Horas" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Parque Gráfico</h3><p>UNIP · 2025</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Parque Gráfico" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Educação Financeira</h3><p>Mundi · 2024</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Educação Financeira.pdf" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Introdução a Administração</h3><p>Fundação Bradesco · 2023</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Introdução a Administração.pdf" data-titulo="Introdução a Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Informática Empresarial</h3><p>All Net · 2022</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Infomatica Empresarial.pdf" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Educação Financeira</h3><p>Mundi · 2024</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/educacao-financeira.pdf" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Introdução a Administração</h3><p>Fundação Bradesco · 2023</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/introducao-administracao.pdf" data-titulo="Introdução a Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Informática Empresarial</h3><p>All Net · 2022</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/informatica-empresarial.pdf" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 </div>
 </section>
 
@@ -469,8 +440,8 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <div class="postcard-address">
   <a href="mailto:isabellydiasg85@gmail.com"><span>E-mail</span>isabellydiasg85@gmail.com</a>
   <a href="https://wa.me/5511954111867?text=Ol%C3%A1%21%20Visualizei%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20o%20seu%20trabalho." target="_blank" rel="noopener noreferrer"><span>WhatsApp</span>(11) 95411-1867</a>
-  <a href="https://www.instagram.com/bellydsg?mdxt=MTAyOGtxOXNpNnhvOQ==" target="_blank"><span>Instagram</span>@bellydsg</a>
-  <a href="https://www.linkedin.com/in/isabelly-dias-gonçalves-4bb9a3343?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank"><span>LinkedIn</span>/isabelly dias gonçalves</a>
+  <a href="https://www.instagram.com/bellydsg?mdxt=MTAyOGtxOXNpNnhvOQ==" target="_blank" rel="noopener noreferrer"><span>Instagram</span>@bellydsg</a>
+  <a href="https://www.linkedin.com/in/isabelly-dias-gonçalves-4bb9a3343?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span>/isabelly dias gonçalves</a>
 </div>
   </div>
 </div>
@@ -500,12 +471,13 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     });
   });
 
-  // carrossel automático dos projetos
+  // carrossel automático dos projetos (pausa quando a aba está em segundo plano)
   document.querySelectorAll('.projeto-carousel .carousel-track').forEach(track => {
     const slides = track.querySelectorAll('.carousel-slide');
     if (slides.length <= 1) return;
     let i = 0;
     setInterval(() => {
+      if (document.hidden) return;
       slides[i].classList.remove('active');
       i = (i + 1) % slides.length;
       slides[i].classList.add('active');
@@ -581,7 +553,6 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     }
 
     // só considera falha se a ÚLTIMA fonte também falhou
-    // (antes, um 404 no .webm disparava o fallback mesmo com o MP4 funcionando)
     if (ultimaFonte) ultimaFonte.addEventListener('error', mostrarFallback);
     // erro de decodificação (codec não suportado pelo aparelho)
     v.addEventListener('error', mostrarFallback);
@@ -647,18 +618,14 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
       modalImg.style.display = 'none';
     }
 
-    // botões de ação: PDF (abre em nova aba) e/ou site
+    // botão de ação do projeto (site ou PDF) — espelha o botão que está no card
     modalAcoes.innerHTML = '';
-    const pdf = (article.dataset.pdf || '').trim();
-    if (pdf) {
+    const linkProjeto = article.querySelector('.projeto-link');
+    if (linkProjeto && linkProjeto.getAttribute('href')) {
+      const ehPdf = linkProjeto.dataset.tipo === 'pdf';
+      const rotulo = linkProjeto.textContent.trim() || (ehPdf ? 'Abrir PDF' : 'Visitar site ↗');
       modalAcoes.appendChild(
-        criarBotao(encodeURI(pdf), article.dataset.pdfTexto || 'Abrir PDF', { pdf: true })
-      );
-    }
-    const linkSite = article.querySelector('.projeto-link');
-    if (linkSite && linkSite.getAttribute('href')) {
-      modalAcoes.appendChild(
-        criarBotao(linkSite.getAttribute('href'), linkSite.textContent.trim() || 'Visitar site ↗', { site: true })
+        criarBotao(linkProjeto.getAttribute('href'), rotulo, { site: !ehPdf, pdf: ehPdf })
       );
     }
     modalAcoes.style.display = modalAcoes.children.length ? 'flex' : 'none';
@@ -714,6 +681,7 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   // certificados: botão que ABRE o PDF em nova aba (não baixa)
   document.querySelectorAll('.btn-pdf').forEach(btn => {
     if (btn.classList.contains('projeto-link')) return;
+    if (btn.classList.contains('video-fallback')) return;
 
     const caminho = (btn.dataset.pdf || '').trim();
     const titulo = btn.dataset.titulo || 'certificado';
@@ -741,45 +709,44 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
+  }, { passive: true });
 
   // animações de entrada ao rolar
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      // quando a animação de entrada acaba, libera o hover sem atraso
-      if (entry.target.classList.contains('stagger-group')) {
-        setTimeout(() => entry.target.classList.add('pronto'), 1500);
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        // quando a animação de entrada acaba, libera o hover sem atraso
+        if (entry.target.classList.contains('stagger-group')) {
+          setTimeout(() => entry.target.classList.add('pronto'), 1500);
+        }
+        revealObserver.unobserve(entry.target);
       }
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
+    });
+  }, { threshold: 0.15 });
 
   document.querySelectorAll('.reveal, .stagger-group').forEach(el => {
     revealObserver.observe(el);
   });
+
   // ===== ABRIR E FECHAR O ENVELOPE =====
-const envelopeScene = document.querySelector('.envelope-scene');
-const envelope = document.querySelector('.envelope');
-const envelopeDica = document.getElementById('envelopeDica');
+  const envelopeScene = document.querySelector('.envelope-scene');
+  const envelope = document.querySelector('.envelope');
+  const envelopeDica = document.getElementById('envelopeDica');
 
-if (envelopeScene && envelope) {
-  envelope.addEventListener('click', (e) => {
+  if (envelopeScene && envelope) {
+    envelope.addEventListener('click', (e) => {
+      // Não fechar ao clicar nos links de contato
+      if (e.target.closest('a')) return;
 
-    // Não fechar ao clicar nos links de contato
-    if (e.target.closest('a')) return;
+      envelopeScene.classList.toggle('fechado');
+      const estaFechado = envelopeScene.classList.contains('fechado');
 
-    envelopeScene.classList.toggle('fechado');
-
-    const estaFechado = envelopeScene.classList.contains('fechado');
-
-    envelopeDica.textContent = estaFechado
-      ? 'Clique no envelope para abrir'
-      : 'Clique no envelope para fechar';
-  });
-}
+      envelopeDica.textContent = estaFechado
+        ? 'Clique no envelope para abrir'
+        : 'Clique no envelope para fechar';
+    });
+  }
 </script>
 
 <script>
@@ -789,7 +756,7 @@ if (envelopeScene && envelope) {
   if (!track) return;
   const janela = track.parentElement; // .trilha-fotos
 
-  // guarda os 3 blocos originais (os outros 3 são cópias deles)
+  // guarda os 3 blocos originais
   const originais = Array.from(track.querySelectorAll('.grid-fotos'))
     .slice(0, 3)
     .map(b => b.cloneNode(true));
@@ -798,8 +765,8 @@ if (envelopeScene && envelope) {
     const c = bloco.cloneNode(true);
     c.setAttribute('aria-hidden', 'true');
     c.querySelectorAll('img').forEach(img => {
-      img.setAttribute('loading', 'eager');
       img.setAttribute('alt', '');
+      img.setAttribute('decoding', 'async');
     });
     return c;
   }
@@ -827,13 +794,27 @@ if (envelopeScene && envelope) {
   }
 
   montar();
-  window.addEventListener('load', montar);
 
+  // só refaz no resize se a ALTURA da janela mudou (evita trabalho à toa no celular ao rolar)
+  let alturaAnterior = janela.clientHeight;
   let t;
   window.addEventListener('resize', () => {
     clearTimeout(t);
-    t = setTimeout(montar, 200);
+    t = setTimeout(() => {
+      if (janela.clientHeight !== alturaAnterior) {
+        alturaAnterior = janela.clientHeight;
+        montar();
+      }
+    }, 250);
   });
+
+  // pausa o rolo quando a home sai da tela (economiza CPU/bateria durante a rolagem)
+  const hero = document.getElementById('home');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => {
+      track.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+    }).observe(hero);
+  }
 })();
 </script>
 </body>

@@ -2081,3 +2081,37 @@ footer .footer-nota{
   .habilidades-fotos img:hover{ transform:none; }
   .tag:hover{ transform:none; }
 }
+/* =====================================================================
+   COLE ESTE BLOCO NO FINAL DO style.css (não precisa mexer em mais nada)
+   ===================================================================== */
+
+/* ---------- fontes: segura as animações do topo até as fontes carregarem ---------- */
+html.fonts-loading .navbar *,
+html.fonts-loading .conteudo-texto *{
+  animation-play-state:paused;
+}
+
+/* ---------- botão do projeto (PDF / site) com ícone alinhado ---------- */
+.projeto-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* ---------- ícone novo "abrir em nova aba" um pouco mais firme ---------- */
+.btn-pdf svg{
+  width:16px;
+  height:16px;
+  stroke-width:2;
+}
+
+.btn-pdf.pequeno svg{
+  width:14px;
+  height:14px;
+}
+
+/* ---------- performance: fotos do rolo não "tremem" nem pesam na pintura ---------- */
+.grid-fotos img{
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
