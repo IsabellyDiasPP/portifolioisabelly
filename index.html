@@ -44,7 +44,7 @@
 
 <!-- ícones reutilizados (abrir arquivo + flores do "Sobre mim") -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<!-- NOVO ícone: "abrir em nova aba" (substitui o ícone de documento) -->
+<!-- ícone: "abrir em nova aba" -->
 <symbol id="ico-pdf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></g></symbol>
 
 <symbol id="ico-flor-vermelha" viewBox="0 0 100 100">
@@ -96,8 +96,7 @@
       <div class="trilha-fotos">
         <div class="slider-track" id="sliderTrack">
 
-          <!-- Só 3 blocos (15 fotos). O JavaScript repete esses blocos para formar o rolo infinito.
-               As fotos vêm de IMG/thumbs/ (versões leves, geradas pelo script otimizar-imagens.sh) -->
+          <!-- Só 3 blocos (15 fotos). O JavaScript repete esses blocos para formar o rolo infinito. -->
           <div class="grid-fotos">
             <img src="IMG/feed1.jpg" alt="Foto 1" decoding="async" />
             <img src="IMG/feed2.JPG" alt="Foto 2" decoding="async" />
@@ -106,7 +105,7 @@
             <img src="IMG/feed5.JPG" alt="Foto 5" decoding="async" />
           </div>
 
-          <div class="grid-fotos">
+          <div class="grid-fotos inverso">
             <img src="IMG/feed6.JPG" alt="Foto 6" decoding="async" />
             <img src="IMG/feed7.JPG" alt="Foto 7" decoding="async" />
             <img src="IMG/feed8.JPG" alt="Foto 8" decoding="async" />
@@ -117,7 +116,7 @@
           <div class="grid-fotos">
             <img src="IMG/feed11.JPG" alt="Foto 11" decoding="async" />
             <img src="IMG/feed12.JPG" alt="Foto 12" decoding="async" />
-            <img src="IMG/feed13.HEIC" alt="Foto 13" decoding="async" />
+            <img src="IMG/feed13.jpg" alt="Foto 13" decoding="async" />
             <img src="IMG/feed19.JPG" alt="Foto 14" decoding="async" />
             <img src="IMG/feed16.JPG" alt="Foto 15" decoding="async" />
           </div>
@@ -127,7 +126,7 @@
     </div>
   </div>
 
-<!-- título + barra de busca (posição e fontes como na referência) -->
+<!-- título + barra de busca -->
 <div class="conteudo-texto">
 <div class="titulo-bloco">
 <h1>
@@ -162,12 +161,8 @@
 <p>Este portfólio reúne projetos que refletem meu processo de aprendizado e experimentação, traduzindo minha dedicação à construção de repertório e à busca por novas formas de comunicar.</p>
 </div>
 
-<div class="s-item s-foto2 reveal">
-<figure class="polaroid"><img alt="Foto de Isabelly Dias Gonçalves 2" src="IMG/WhatsApp Image 2026-04-11 at 16.29.22 (1).jpeg" loading="lazy" decoding="async"/></figure>
-</div>
-
 <div class="s-item s-foto3 reveal">
-<div class="tv"><img alt="Foto de Isabelly Dias Gonçalves 3" src="IMG/fotoisa.jpeg" loading="lazy" decoding="async"/></div>
+<div class="tv"><img alt="Foto de Isabelly Dias Gonçalves 3" src="IMG/fotoisa.jpg" loading="lazy" decoding="async"/></div>
 </div>
 
 </div>
@@ -195,9 +190,7 @@
 </div>
 </article>
 
-<!-- 02 · VIEFIVE
-     Card: imagem + botão "Abrir PDF" (igual ao "Visitar site" do projeto 06).
-     Modal: vídeo + o mesmo botão de PDF. O PDF abre em nova aba (sem baixar). -->
+<!-- 02 · VIEFIVE -->
 <article class="projeto reveal" data-video="IMG/video.mp4">
 <div class="projeto-carousel">
 <div class="carousel-track">
@@ -303,9 +296,9 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 <article class="projeto reveal">
 <div class="projeto-carousel">
 <div class="carousel-track">
-<div class="carousel-slide active"><img class="slide-img" alt="Campanha Tinder — imagem 1" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.” (1).png" loading="lazy" decoding="async"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 2" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.” (2).png" loading="lazy" decoding="async"/></div>
-<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 3" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.”.png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide active"><img class="slide-img" alt="Campanha Tinder — imagem 1" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.” (1).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 2" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.” (2).png" loading="lazy" decoding="async"/></div>
+<div class="carousel-slide"><img class="slide-img" alt="Campanha Tinder — imagem 3" src="IMG/“A parte boa é viver o encontro. A segurança, a gente cuida por trás.”.png" loading="lazy" decoding="async"/></div>
 </div>
 </div>
 <div class="projeto-info">
@@ -351,15 +344,16 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 </section>
 
 <!-- ===================== FORMAÇÃO / CERTIFICADOS =====================
-  Os PDFs ficam na pasta CERTIFICADOS/ (nomes SEM acento, SEM espaço, minúsculos).
+  Os PDFs ficam na pasta CERTIFICADOS/ com os MESMOS nomes que aparecem no Explorador de Arquivos.
   data-pdf vazio ("") = botão desativado "PDF em breve".
+  Sem stagger-group aqui: os cards aparecem direto, sem animação em cascata que trava a rolagem.
 -->
 <section class="certificados-section" id="certificados">
 <div class="section-heading reveal">
 <h2><span class="destaque">Formação</span></h2>
 </div>
 
-<div class="certificados-destaque stagger-group">
+<div class="certificados-destaque">
 
 <article class="certificado-card destaque">
 <span class="cert-badge">Ensino superior</span>
@@ -398,26 +392,26 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 
 <h3 class="certificados-subtitulo reveal">Cursos e <span class="destaque">Certificações</span></h3>
 
-<div class="certificados-grid stagger-group">
-<div class="certificado-card"><h3>Joint Educational Program on Multiple Myeloma</h3><p>ABHH, GBRAM e IMS · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/joint-program.pdf" data-titulo="Joint Educational Program on Multiple Myeloma" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Veeva - Gestão de Eventos (Marketing)</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/veeva-gestao-eventos.pdf" data-titulo="Veeva - Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificados-grid">
+<div class="certificado-card"><h3>Joint Educational Program on Multiple Myeloma</h3><p>ABHH, GBRAM e IMS · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Joint Program.pdf" data-titulo="Joint Educational Program on Multiple Myeloma" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Veeva - Gestão de Eventos (Marketing)</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Veeva - Gestão de Eventos (Marketing).pdf" data-titulo="Veeva - Gestão de Eventos (Marketing)" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Brand Fest</h3><p>UNIP · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Brand Fest" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/microsoft-copilot.pdf" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>FluêncIA - Fundamentos da Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/fluencia-ia.pdf" data-titulo="FluêncIA - Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/seguranca-cibernetica.pdf" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Sap Concur</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/sap-concur.pdf" data-titulo="Sap Concur" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/hematologia.pdf" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/etica-ia.pdf" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/descarbonizacao.pdf" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Microsoft Copilot</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Microsoft Copilot.pdf" data-titulo="Microsoft Copilot" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>FluêncIA - Fundamentos da Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/FLUÊNCIA - FUNDAMENTOS DA INTELIGÊNCIA ARTIFICIAL.pdf" data-titulo="FluêncIA - Fundamentos da Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Por Dentro da Segurança Cibernética</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Por dentro da Segurança Cibernética.pdf" data-titulo="Por Dentro da Segurança Cibernética" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Sap Concur</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/SAP CONCUR.pdf" data-titulo="Sap Concur" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Hematologia em Pauta</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Hematologia.pdf" data-titulo="Hematologia em Pauta" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ética na Inteligência Artificial</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/etica.pdf" data-titulo="Ética na Inteligência Artificial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Desvendando a Descarbonização</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/DESVENDANDO A DESCARBONIZAÇÃO.pdf" data-titulo="Desvendando a Descarbonização" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Calendário de Marketing</h3><p>Libbs Farmacêutica · 2026</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Calendário de Marketing" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Fundamentos e ações para a economia circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/economia-circular-fundamentos.pdf" data-titulo="Fundamentos e ações para a economia circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/economia-circular-transicao.pdf" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/economia-circular-ciclos.pdf" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Fundamentos e ações para a economia circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/fun-economiacircular.pdf" data-titulo="Fundamentos e ações para a economia circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Acelerando a Transição para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/ACELERANDO A TRANSIÇÃO PARA A ECONOMIA CIRCULAR.pdf" data-titulo="Acelerando a Transição para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Ciclos de Retorno para a Economia Circular</h3><p>SENAI · 2026</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/CICLOS DE RETORNO PARA ECONOMIA CIRCULAR.pdf" data-titulo="Ciclos de Retorno para a Economia Circular" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Altas Horas</h3><p>UNIP · 2025</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Altas Horas" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 <div class="certificado-card"><h3>Parque Gráfico</h3><p>UNIP · 2025</p><a class="btn-pdf pequeno" data-pdf="" data-titulo="Parque Gráfico" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Educação Financeira</h3><p>Mundi · 2024</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/educacao-financeira.pdf" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Introdução a Administração</h3><p>Fundação Bradesco · 2023</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/introducao-administracao.pdf" data-titulo="Introdução a Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
-<div class="certificado-card"><h3>Informática Empresarial</h3><p>All Net · 2022</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/informatica-empresarial.pdf" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Educação Financeira</h3><p>Mundi · 2024</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Educação Financeira.pdf" data-titulo="Educação Financeira" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Introdução a Administração</h3><p>Fundação Bradesco · 2023</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Introdução a Administração.pdf" data-titulo="Introdução a Administração" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
+<div class="certificado-card"><h3>Informática Empresarial</h3><p>All Net · 2022</p><a class="btn-pdf pequeno" data-pdf="CERTIFICADOS/Infomatica Empresarial.pdf" data-titulo="Informática Empresarial" href="#"><svg width="14" height="14" aria-hidden="true"><use href="#ico-pdf"/></svg><span class="btn-pdf-texto">Abrir certificado</span></a></div>
 </div>
 </section>
 
@@ -471,17 +465,78 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     });
   });
 
-  // carrossel automático dos projetos (pausa quando a aba está em segundo plano)
+  // rolagem suave só nos links do menu (substitui o scroll-behavior do CSS, que causava travadas)
+  document.querySelectorAll('.nav-links a, .nav-logo').forEach(a => {
+    a.addEventListener('click', e => {
+      const alvo = document.querySelector(a.getAttribute('href'));
+      if (!alvo) return;
+      e.preventDefault();
+      alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // carrossel automático dos projetos
+  // - fixa a proporção do carrossel pela 1ª imagem (a página não muda de altura ao trocar)
+  // - carrega e DECODIFICA a próxima foto antes de mostrar (sem travada na troca)
+  // - só roda enquanto o carrossel está visível na tela
   document.querySelectorAll('.projeto-carousel .carousel-track').forEach(track => {
-    const slides = track.querySelectorAll('.carousel-slide');
+    const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+    const imgs = slides.map(s => s.querySelector('img'));
+
+    // proporção do carrossel = proporção da primeira imagem
+    const primeira = imgs[0];
+    function fixarProporcao() {
+      if (primeira && primeira.naturalWidth) {
+        track.style.aspectRatio = primeira.naturalWidth + ' / ' + primeira.naturalHeight;
+      }
+    }
+    if (primeira) {
+      if (primeira.complete) fixarProporcao();
+      else primeira.addEventListener('load', fixarProporcao, { once: true });
+    }
+
     if (slides.length <= 1) return;
+
     let i = 0;
-    setInterval(() => {
-      if (document.hidden) return;
+    let timer = null;
+    let trocando = false;
+
+    async function proximo() {
+      if (document.hidden || trocando) return;
+      trocando = true;
+      const n = (i + 1) % slides.length;
+      const img = imgs[n];
+      try {
+        if (img && img.decode) await img.decode(); // espera carregar + decodificar
+      } catch (e) { /* segue mesmo assim */ }
       slides[i].classList.remove('active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-    }, 2000);
+      slides[n].classList.add('active');
+      i = n;
+      trocando = false;
+    }
+
+    function iniciar() {
+      if (timer) return;
+      timer = setInterval(proximo, 2500);
+    }
+    function parar() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) {
+          // ao aparecer, libera o carregamento de todas as fotos do carrossel
+          imgs.forEach(im => { if (im) im.loading = 'eager'; });
+          iniciar();
+        } else {
+          parar();
+        }
+      }, { threshold: 0.2 }).observe(track);
+    } else {
+      iniciar();
+    }
   });
 
   // ===== janela (modal) ao clicar nas imagens do projeto =====
@@ -767,6 +822,12 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     c.querySelectorAll('img').forEach(img => {
       img.setAttribute('alt', '');
       img.setAttribute('decoding', 'async');
+      // se uma foto não abrir (arquivo faltando ou formato não suportado), usa uma reserva
+      img.addEventListener('error', () => {
+        if (img.dataset.reserva) return;
+        img.dataset.reserva = '1';
+        img.src = 'IMG/feed1.jpg';
+      });
     });
     return c;
   }

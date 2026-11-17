@@ -1,6 +1,6 @@
 :root{
-  --bg:#fcf8f0;            /* fundo único, mais escurinho */
-  --bg-2:#fcf8f0;           /* igual ao --bg, para todas as seções ficarem na mesma cor */
+  --bg:#fcf8f0;
+  --bg-2:#fcf8f0;
   --card:#fffdf9;
   --dark:#1a1a1a;
   --red:#c71e1e;
@@ -27,7 +27,10 @@
 }
 
 html{
-  scroll-behavior:smooth;
+  /* FIX: sem rolagem suave global (a suavização dos links do menu é feita em JS)
+     e sem "scroll anchoring", que empurrava a tela pra baixo quando imagens carregavam */
+  scroll-behavior:auto;
+  overflow-anchor:none;
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
 }
@@ -42,6 +45,7 @@ body{
   font-family:'Poppins', Arial, Helvetica, sans-serif;
   color:var(--dark);
   overflow-x:hidden;
+  overflow-anchor:none;
 }
 
 img{
@@ -132,7 +136,7 @@ section[id]{
   gap:5px;
   cursor:pointer;
   z-index:210;
-  padding:10px;          /* área de toque maior no celular */
+  padding:10px;
   margin-right:-10px;
 }
 
@@ -148,11 +152,10 @@ section[id]{
   position:relative;
   width:100%;
   height:100vh;
-  height:100svh;   /* respeita a barra do navegador no celular */
+  height:100svh;
   overflow:hidden;
 }
 
-/* câmera maior e mais encostada na esquerda, como na referência */
 .camera-fixa{
   position:absolute;
   left:0;
@@ -202,7 +205,7 @@ section[id]{
   z-index:15;
   border-radius:2px;
   pointer-events:auto;
-  container-type:inline-size; /* permite usar cqw (largura da janela) no mosaico */
+  container-type:inline-size;
 }
 
 .slider-track{
@@ -212,13 +215,11 @@ section[id]{
   animation:rolarFotos var(--rolo-duracao) linear infinite;
 }
 
-/* MOSAICO: 3 colunas com fotos de alturas diferentes (como na referência).
-   Cada bloco tem 8 linhas; as 3 colunas somam 8 linhas, então o loop não tem emendas.
-   col 1: alta (5) + baixa (3) | col 2: baixa (3) + alta (5) | col 3: média (4) + média (4) */
 .grid-fotos{
   display:grid;
+  grid-template-rows:none;
   grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:44px;      /* reserva para navegadores sem cqw */
+  grid-auto-rows:44px;
   grid-auto-rows:9cqw;
   gap:5px;
   margin-bottom:5px;
@@ -235,14 +236,23 @@ section[id]{
   border-radius:8px;
   display:block;
   background:var(--ink);
+  /* FIX: não força uma camada de GPU por foto (deixava a página pesada) */
 }
 
-.grid-fotos img:nth-child(1){ grid-column:1; grid-row:1 / span 5; }
-.grid-fotos img:nth-child(2){ grid-column:1; grid-row:6 / span 3; }
-.grid-fotos img:nth-child(3){ grid-column:2; grid-row:1 / span 3; }
-.grid-fotos img:nth-child(4){ grid-column:2; grid-row:4 / span 5; }
-.grid-fotos img:nth-child(5){ grid-column:3; grid-row:1 / span 4; }
-.grid-fotos img:nth-child(6){ grid-column:3; grid-row:5 / span 4; }
+/* FIX: cada bloco tem 5 fotos e 6 linhas, e as 3 colunas fecham exatamente 6 linhas (sem buraco):
+   col 1: 4 + 2 | col 2: 2 + 4 | col 3: 1 foto alta (6).
+   O bloco com a classe .inverso espelha o layout (foto alta na coluna 1) para variar. */
+.grid-fotos img:nth-child(1){ grid-column:1; grid-row:1 / span 4; }
+.grid-fotos img:nth-child(2){ grid-column:1; grid-row:5 / span 2; }
+.grid-fotos img:nth-child(3){ grid-column:2; grid-row:1 / span 2; }
+.grid-fotos img:nth-child(4){ grid-column:2; grid-row:3 / span 4; }
+.grid-fotos img:nth-child(5){ grid-column:3; grid-row:1 / span 6; }
+
+.grid-fotos.inverso img:nth-child(5){ grid-column:1; grid-row:1 / span 6; }
+.grid-fotos.inverso img:nth-child(1){ grid-column:2; grid-row:1 / span 4; }
+.grid-fotos.inverso img:nth-child(2){ grid-column:2; grid-row:5 / span 2; }
+.grid-fotos.inverso img:nth-child(3){ grid-column:3; grid-row:1 / span 2; }
+.grid-fotos.inverso img:nth-child(4){ grid-column:3; grid-row:3 / span 4; }
 
 @keyframes rolarFotos{
   0%{ transform:translateY(0); }
@@ -253,7 +263,7 @@ section[id]{
   animation-play-state:paused;
 }
 
-/* ---------- texto da home (igual à referência) ---------- */
+/* ---------- texto da home ---------- */
 .conteudo-texto{
   position:absolute;
   right:0;
@@ -268,7 +278,6 @@ section[id]{
   z-index:20;
 }
 
-/* bloco que agrupa título + busca: a busca alinha na direita do "PORTFOLIO" */
 .titulo-bloco{
   display:flex;
   flex-direction:column;
@@ -280,7 +289,7 @@ section[id]{
 .titulo-bloco h1{
   display:flex;
   flex-direction:column;
-  align-items:center;       /* "Creative" centralizado sobre "PORTFOLIO" */
+  align-items:center;
   width:100%;
   font-weight:400;
 }
@@ -288,7 +297,7 @@ section[id]{
 .creative-text{
   display:block;
   font-family:'Pinyon Script', cursive;
-  font-weight:400;          /* sem negrito falso: fica fino como na referência */
+  font-weight:400;
   font-size:clamp(56px,9vw,180px);
   line-height:.8;
   color:#111;
@@ -299,7 +308,7 @@ section[id]{
 .portfolio-text{
   display:block;
   font-family:'Playfair Display', serif;
-  font-weight:500;          /* mais leve que antes (800) */
+  font-weight:500;
   font-size:clamp(32px,6.6vw,136px);
   line-height:1;
   letter-spacing:.005em;
@@ -314,7 +323,6 @@ section[id]{
   to{ opacity:1; transform:translateY(0); }
 }
 
-/* barra de busca: pequena, com lupa, alinhada à direita e bem abaixo do título */
 .search-bar{
   display:flex;
   align-items:center;
@@ -420,8 +428,6 @@ section[id]{
   background:var(--bg);
 }
 
-/* colagem em GRID: cada item tem a sua própria área, então nada fica por cima do texto.
-   Linha 1: título | Linha 2: foto 1 + texto | Linha 3: foto 2 + TV */
 .sobre-board{
   position:relative;
   max-width:1100px;
@@ -457,8 +463,8 @@ section[id]{
 }
 
 .s-texto{
-  grid-column:5 / 13;
-  grid-row:2;
+  grid-column:7 / 13;
+  grid-row:2 / span 2;
   padding-left:20px;
 }
 
@@ -476,35 +482,30 @@ section[id]{
   margin-bottom:0;
 }
 
+/* foto 1 (polaroid) e foto 3 (TV): uma em cima da outra, bem juntinhas */
 .s-foto1{
   grid-column:1 / 5;
-  grid-row:1 / 3;
+  grid-row:2;
   width:100%;
   max-width:290px;
-  margin-top:24px;
+  margin-top:0;
   rotate:-2deg;
-}
-
-.s-foto2{
-  grid-column:2 / 6;
-  grid-row:3;
-  width:100%;
-  max-width:290px;
-  rotate:-8deg;
+  z-index:1;
 }
 
 .s-foto3{
-  grid-column:7 / 13;
+  grid-column:1 / 7;
   grid-row:3;
-  justify-self:end;
+  justify-self:start;
   width:100%;
   max-width:460px;
-  margin-top:24px;
+  margin-top:-44px;
+  margin-left:24px;
   rotate:1.5deg;
+  z-index:2;
 }
 
 .s-foto1:hover{ rotate:-1deg; }
-.s-foto2:hover{ rotate:-5deg; }
 .s-foto3:hover{ rotate:0deg; }
 
 .polaroid{
@@ -521,7 +522,6 @@ section[id]{
   object-fit:cover;
 }
 
-/* moldura de TV retrô */
 .tv{
   position:relative;
   padding:8px 8px 22px;
@@ -551,7 +551,6 @@ section[id]{
   box-shadow:-14px 0 0 #c9c9ce;
 }
 
-/* flores decorativas */
 .flor{
   position:absolute;
   z-index:5;
@@ -578,7 +577,6 @@ section[id]{
   margin-bottom:24px;
 }
 
-/* aviso de produção acadêmica */
 .aviso-academico{
   max-width:720px;
   margin:0 auto 80px;
@@ -634,7 +632,6 @@ section[id]{
   box-shadow:0 25px 45px -18px rgba(0,0,0,.35);
 }
 
-/* selo "Produção acadêmica" sobre a imagem */
 .selo-academico{
   position:absolute;
   top:14px;
@@ -654,30 +651,36 @@ section[id]{
   pointer-events:none;
 }
 
+/* FIX: todos os slides ficam empilhados no mesmo lugar e só a opacidade muda.
+   A altura do carrossel é fixa (aspect-ratio ajustado pelo JS com a 1ª imagem),
+   então trocar de slide não recalcula o layout da página. */
 .carousel-track{
   position:relative;
   width:100%;
   max-height:600px;
+  aspect-ratio:4/5;
   overflow:hidden;
+  background:#efe5d3;
 }
 
 .carousel-slide{
-  display:none;
-  width:100%;
-  max-height:600px;
+  position:absolute;
+  inset:0;
   opacity:0;
-  transition:opacity .9s ease;
+  visibility:hidden;
+  transition:opacity .9s ease, visibility 0s linear .9s;
 }
 
 .carousel-slide.active{
-  display:block;
   opacity:1;
+  visibility:visible;
+  z-index:1;
+  transition:opacity .9s ease;
 }
 
 .slide-img{
   width:100%;
-  max-height:600px;
-  height:auto;
+  height:100%;
   display:block;
   object-fit:cover;
   object-position:center;
@@ -778,7 +781,6 @@ section[id]{
   }
 }
 
-/* botão "Visitar site" exibido no card do projeto */
 .projeto-link{
   margin-top:18px;
 }
@@ -853,7 +855,7 @@ section[id]{
   margin:-26px -28px 22px;
   overflow:hidden;
   border-radius:20px 20px 0 0;
-  transform:translateZ(0); /* camada própria: evita vídeo preto no Safari/iOS */
+  transform:translateZ(0);
 }
 
 .proj-modal-img img{
@@ -864,7 +866,6 @@ section[id]{
   border-radius:0;
 }
 
-/* vídeo dentro do modal (projeto VieFive) */
 .proj-modal-img video{
   display:block;
   width:100%;
@@ -892,7 +893,6 @@ section[id]{
   line-height:1.2;
 }
 
-/* texto do projeto JUSTIFICADO */
 .proj-modal-text{
   color:#444;
   line-height:1.75;
@@ -903,7 +903,6 @@ section[id]{
   -webkit-hyphens:auto;
 }
 
-/* botões de ação do modal (PDF / site) */
 .proj-modal-acoes{
   display:none;
   flex-wrap:wrap;
@@ -993,16 +992,9 @@ section[id]{
   font-weight:500;
   letter-spacing:.5px;
   cursor:default;
-  background:#f9d3dc; /* rosa pastel (padrão) */
+  background:#fbf0b5;
   transition:background .2s ease, color .2s ease, transform .2s ease;
 }
-
-.tag:nth-child(6n+1){ background:#fbf0b5; }
-.tag:nth-child(6n+2){ background:#fbf0b5; } 
-.tag:nth-child(6n+3){ background:#fbf0b5; } 
-.tag:nth-child(6n+4){ background:#fbf0b5; } 
-.tag:nth-child(6n+5){ background:#fbf0b5; } 
-.tag:nth-child(6n+6){ background:#fbf0b5; }
 
 .tag:hover{
   background:var(--dark);
@@ -1025,18 +1017,18 @@ section[id]{
   margin:0 auto 80px;
 }
 
+/* FIX: hover SEM mover o card (antes ele subia 8–10px, o mouse "saía" do card e ele ficava tremendo) */
 .certificado-card{
   border:1px solid var(--border);
   border-radius:14px;
   padding:30px;
   background:var(--card);
-  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  transition:box-shadow .25s ease, border-color .25s ease;
 }
 
 .certificado-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 30px rgba(0,0,0,.06);
   border-color:var(--red);
+  box-shadow:0 14px 28px -14px rgba(199,30,30,.35);
 }
 
 .certificado-card h3{
@@ -1086,9 +1078,8 @@ section[id]{
 }
 
 .certificado-card.destaque:hover{
-  transform:translateY(-10px);
-  box-shadow:0 40px 60px -26px rgba(199,30,30,.35);
   border-color:var(--red);
+  box-shadow:0 30px 50px -26px rgba(199,30,30,.4);
 }
 
 .cert-badge{
@@ -1194,6 +1185,8 @@ section[id]{
 
 .btn-pdf svg{
   flex:none;
+  width:16px;
+  height:16px;
 }
 
 .btn-pdf:hover,
@@ -1211,6 +1204,11 @@ section[id]{
   font-size:12px;
 }
 
+.btn-pdf.pequeno svg{
+  width:14px;
+  height:14px;
+}
+
 .btn-pdf.desativado{
   color:var(--gray);
   border-color:var(--border);
@@ -1219,7 +1217,6 @@ section[id]{
   pointer-events:none;
 }
 
-/* variação preenchida (botão "Visitar site") */
 .btn-pdf.btn-site{
   background:var(--red);
   color:#fff;
@@ -1381,7 +1378,6 @@ section[id]{
   50%{ transform:translate(-50%,-43%) rotate(-3deg) scale(1); }
 }
 
-/* ENVELOPE FECHADO (clique): cartão desce e some, aba fecha */
 .envelope-scene.in-view.fechado .postcard{
   opacity:0;
   transform:translate(-50%,12%) rotate(0deg) scale(.88);
@@ -1439,7 +1435,7 @@ section[id]{
 }
 
 .postcard-msg p{
-  font-family:'Poppins', Arial, Helvetica, sans-serif;  /* ou 'Caveat' se preferir manuscrito */
+  font-family:'Poppins', Arial, Helvetica, sans-serif;
   font-size:16px;
   font-weight:500;
   line-height:1.5;
@@ -1594,7 +1590,6 @@ footer .footer-nota{
     max-width:100%;
   }
 
-  /* Sobre mim: vira coluna única (cada item em sequência, sem sobrepor) */
   .sobre-board{
     display:flex;
     flex-direction:column;
@@ -1608,10 +1603,10 @@ footer .footer-nota{
   }
 
   .s-titulo{ order:0; text-align:center; justify-self:auto; }
-  .s-foto1{ order:1; width:min(70%,300px); max-width:none; margin-top:0; }
-  .s-texto{ order:2; width:100%; max-width:560px; padding-left:0; }
-  .s-foto2{ order:3; width:min(64%,280px); max-width:none; }
-  .s-foto3{ order:4; width:min(92%,420px); max-width:none; margin-top:0; }
+  .s-foto1{ order:1; width:min(64%,280px); max-width:none; margin-top:0; }
+  /* foto 3 sobe e encosta na foto 1 (o gap do flex é 40px, então -34px deixa ~6px) */
+  .s-foto3{ order:2; width:min(92%,420px); max-width:none; margin-top:-34px; margin-left:0; }
+  .s-texto{ order:3; width:100%; max-width:560px; padding-left:0; }
 
   .flor-1{ width:56px; right:-20px; top:-26px; }
   .flor-2{ width:46px; right:-34px; top:8px; }
@@ -1624,15 +1619,14 @@ footer .footer-nota{
 /* ===================== CELULAR ===================== */
 @media (max-width:768px){
   body{
-    overflow-x:hidden;   /* evita rolagem lateral (flores, fotos inclinadas) */
+    overflow-x:hidden;
     overflow-y:auto;
   }
-    /* Sobre mim (celular): título → 3 fotos → texto */
+  /* Sobre mim (celular): título → 3 fotos → texto */
   .s-titulo{ order:0; }
   .s-foto1{ order:1; }
-  .s-foto2{ order:2; }
-  .s-foto3{ order:3; }
-  .s-texto{ order:4; }
+  .s-foto3{ order:2; }
+  .s-texto{ order:3; }
 
   .hero{
     height:auto;
@@ -1987,7 +1981,7 @@ footer .footer-nota{
   .certificados-grid{ max-width:1400px; }
 }
 
-/* ---------- desktop/notebook com tela BAIXA (janela pequena, 768p etc.) ---------- */
+/* ---------- desktop/notebook com tela BAIXA ---------- */
 @media (min-width:769px) and (max-height:620px){
   .navbar{ padding-top:12px; padding-bottom:12px; }
   .creative-text{ font-size:clamp(48px,min(9vw,17vh),180px); }
@@ -1995,7 +1989,7 @@ footer .footer-nota{
   .search-bar{ margin-top:14px; }
 }
 
-/* ---------- tablet em pé (iPad etc.): home empilhada, como no celular ---------- */
+/* ---------- tablet em pé: home empilhada, como no celular ---------- */
 @media (min-width:769px) and (max-width:1100px) and (orientation:portrait){
   .hero{
     height:auto;
@@ -2074,16 +2068,11 @@ footer .footer-nota{
   .cert-badge{ font-size:10px; letter-spacing:1.4px; }
 }
 
-/* ---------- dispositivos sem mouse: sem "pulo" de hover nos cards ---------- */
+/* ---------- dispositivos sem mouse: sem "pulo" de hover ---------- */
 @media (hover:none){
-  .certificado-card:hover,
-  .certificado-card.destaque:hover{ transform:none; }
   .habilidades-fotos img:hover{ transform:none; }
   .tag:hover{ transform:none; }
 }
-/* =====================================================================
-   COLE ESTE BLOCO NO FINAL DO style.css (não precisa mexer em mais nada)
-   ===================================================================== */
 
 /* ---------- fontes: segura as animações do topo até as fontes carregarem ---------- */
 html.fonts-loading .navbar *,
@@ -2096,22 +2085,4 @@ html.fonts-loading .conteudo-texto *{
   display:inline-flex;
   align-items:center;
   gap:10px;
-}
-
-/* ---------- ícone novo "abrir em nova aba" um pouco mais firme ---------- */
-.btn-pdf svg{
-  width:16px;
-  height:16px;
-  stroke-width:2;
-}
-
-.btn-pdf.pequeno svg{
-  width:14px;
-  height:14px;
-}
-
-/* ---------- performance: fotos do rolo não "tremem" nem pesam na pintura ---------- */
-.grid-fotos img{
-  backface-visibility:hidden;
-  transform:translateZ(0);
 }
