@@ -479,11 +479,13 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
   // - fixa a proporção do carrossel pela 1ª imagem (a página não muda de altura ao trocar)
   // - carrega e DECODIFICA a próxima foto antes de mostrar (sem travada na troca)
   // - só roda enquanto o carrossel está visível na tela
+  // - pula slides cuja imagem não carregou (evita mostrar imagem quebrada)
   document.querySelectorAll('.projeto-carousel .carousel-track').forEach(track => {
     const slides = Array.from(track.querySelectorAll('.carousel-slide'));
     const imgs = slides.map(s => s.querySelector('img'));
 
     // proporção do carrossel = proporção da primeira imagem
+    // (o 'load' fica sempre ligado: se a 1ª imagem for corrigida depois, a proporção é ajustada)
     const primeira = imgs[0];
     function fixarProporcao() {
       if (primeira && primeira.naturalWidth) {
@@ -491,8 +493,8 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
       }
     }
     if (primeira) {
+      primeira.addEventListener('load', fixarProporcao);
       if (primeira.complete) fixarProporcao();
-      else primeira.addEventListener('load', fixarProporcao, { once: true });
     }
 
     if (slides.length <= 1) return;
@@ -508,7 +510,12 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
       const img = imgs[n];
       try {
         if (img && img.decode) await img.decode(); // espera carregar + decodificar
-      } catch (e) { /* segue mesmo assim */ }
+      } catch (e) { /* segue abaixo */ }
+      // imagem ainda quebrada? não mostra, tenta de novo no próximo ciclo
+      if (img && img.complete && img.naturalWidth === 0) {
+        trocando = false;
+        return;
+      }
       slides[i].classList.remove('active');
       slides[n].classList.add('active');
       i = n;
@@ -875,6 +882,148 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     new IntersectionObserver(([e]) => {
       track.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
     }).observe(hero);
+  }
+})();
+</script>
+
+<script>
+/* ===================================================================
+   CAMINHOS TOLERANTES — imagens dos projetos (ex.: Tinder) e PDFs.
+   NÃO renomeia nenhum arquivo. Se o arquivo não abrir do jeito que está
+   escrito no HTML, o navegador testa o MESMO nome em outras formas:
+     • acentos "compostos" (é) ou "decompostos" (e + ´) — comum em arquivos
+       vindos de Mac/iPhone/Canva, e o servidor diferencia os dois;
+     • MAIÚSCULAS/minúsculas da pasta e da extensão (.png/.PNG, IMG/img).
+   Quando nenhuma forma funciona, os caminhos testados aparecem no
+   Console (F12) para você ver qual nome está faltando.
+   =================================================================== */
+(function () {
+  'use strict';
+
+  function codificar(caminho) {
+    return caminho.split('/').map(encodeURIComponent).join('/');
+  }
+
+  function limpar(caminho) {
+    try { return decodeURI(caminho); } catch (e) { return caminho; }
+  }
+
+  // lista de formas possíveis do mesmo caminho (a 1ª é a escrita no HTML)
+  function variantes(caminho) {
+    var partes = limpar(caminho).normalize('NFC').split('/');
+    var arq = partes.pop();
+    var pasta = partes.join('/');
+    var ponto = arq.lastIndexOf('.');
+    var nome = ponto > -1 ? arq.slice(0, ponto) : arq;
+    var ext = ponto > -1 ? arq.slice(ponto) : '';
+    function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : s; }
+
+    var pastas = [pasta, pasta.toLowerCase(), pasta.split('/').map(cap).join('/')];
+    var exts = [ext, ext.toLowerCase(), ext.toUpperCase()];
+    var vistos = {}, lista = [];
+
+    pastas.forEach(function (p) {
+      exts.forEach(function (e) {
+        ['NFC', 'NFD'].forEach(function (forma) {
+          var c = ((p ? p + '/' : '') + nome + e).normalize(forma);
+          if (!vistos[c]) { vistos[c] = 1; lista.push(c); }
+        });
+      });
+    });
+    return lista;
+  }
+
+  // ---------- IMAGENS DOS PROJETOS ----------
+  function corrigirImagem(img) {
+    var original = img.getAttribute('src');
+    if (!original || /^(data:|https?:|\/\/)/i.test(original)) return;
+
+    var lista = variantes(original);
+    var i = 0;
+    var terminou = false;
+
+    function falhou() {
+      if (terminou) return;
+      i++;
+      if (i < lista.length) {
+        img.src = codificar(lista[i]);
+      } else {
+        terminou = true;
+        img.removeEventListener('error', falhou);
+        console.warn('[portfólio] Imagem não encontrada. Caminhos testados:', lista.map(codificar));
+      }
+    }
+
+    img.addEventListener('error', falhou);
+    // se o erro aconteceu antes deste script rodar
+    if (img.complete && img.naturalWidth === 0 && img.currentSrc) falhou();
+  }
+
+  function corrigirImagens() {
+    document.querySelectorAll('img.slide-img').forEach(corrigirImagem);
+  }
+
+  // ---------- PDFs (certificados + manual do VieFive) ----------
+  async function existe(url) {
+    try {
+      var r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+      if (r.status === 405 || r.status === 501) return null;   // servidor não aceita teste
+      if (!r.ok) return false;
+      var tipo = (r.headers.get('content-type') || '').toLowerCase();
+      return tipo.indexOf('text/html') === -1;                 // página de erro com status 200
+    } catch (e) {
+      return null;                                             // sem como testar (ex.: file://)
+    }
+  }
+
+  var pdfsVerificados = false;
+  async function corrigirPdfs() {
+    if (pdfsVerificados) return;
+    pdfsVerificados = true;
+
+    var links = document.querySelectorAll('.btn-pdf[data-pdf], .projeto-link[data-tipo="pdf"]');
+    for (var k = 0; k < links.length; k++) {
+      var a = links[k];
+      var caminho = (a.getAttribute('data-pdf') || '').trim();
+      if (!caminho && a.getAttribute('data-tipo') === 'pdf') caminho = a.getAttribute('href') || '';
+      if (!caminho || caminho === '#') continue;
+
+      var lista = variantes(caminho);
+      var achou = null;
+      for (var j = 0; j < lista.length; j++) {
+        var ok = await existe(codificar(lista[j]));
+        if (ok === null) return;       // não dá para testar aqui: mantém os links como estão
+        if (ok) { achou = lista[j]; break; }
+      }
+      if (achou) {
+        a.setAttribute('href', codificar(achou));
+      } else {
+        console.warn('[portfólio] PDF não encontrado. Caminhos testados:', lista.map(codificar));
+      }
+    }
+  }
+
+  // ---------- liga tudo ----------
+  corrigirImagens();
+  window.addEventListener('load', function () {
+    // pega imagens que falharam antes dos ouvintes existirem
+    document.querySelectorAll('img.slide-img').forEach(function (img) {
+      if (img.complete && img.naturalWidth === 0 && img.currentSrc) {
+        img.dispatchEvent(new Event('error'));
+      }
+    });
+  });
+
+  var alvo = document.getElementById('certificados');
+  if (alvo && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entradas) {
+      if (entradas[0].isIntersecting) { io.disconnect(); corrigirPdfs(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(alvo);
+    // o manual do VieFive fica nos projetos: confere junto, pouco depois do carregamento
+    window.addEventListener('load', function () { setTimeout(corrigirPdfs, 1500); });
+  } else {
+    window.addEventListener('load', corrigirPdfs);
   }
 })();
 </script>
