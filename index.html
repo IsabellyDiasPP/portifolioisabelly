@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,700&family=Pinyon+Script&family=Poppins:wght@300;400;500;600&family=Caveat:wght@600&display=block" rel="stylesheet"/>
 
 <!-- imagem principal da home carrega com prioridade -->
-<link rel="preload" as="image" href="IMG/CAMERA3.png"/>
+<link rel="preload" as="image" href="IMG/CAMERA3.webp" type="image/webp"/>
 
 <link href="style.css" rel="stylesheet"/>
 
@@ -91,7 +91,7 @@
 <section class="hero" id="home">
   <div class="camera-fixa">
     <div class="camera-wrapper">
-      <img class="camera-img" src="IMG/CAMERA3.png" alt="" fetchpriority="high" decoding="async" />
+    <img class="camera-img" src="IMG/CAMERA3.webp" alt="" fetchpriority="high" decoding="async" />
 
       <div class="trilha-fotos">
         <div class="slider-track" id="sliderTrack">
@@ -850,12 +850,21 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
 
 <script>
 // Rolo de fotos da câmera: repete as fotos até cobrir a altura da tela, sem buracos no loop
+// + cada foto aparece com fade assim que chega (sem ficar o fundo marrom "travado")
 (function () {
   const track = document.getElementById('sliderTrack');
   if (!track) return;
   const janela = track.parentElement; // .trilha-fotos
 
-  // guarda os 3 blocos originais
+  function marcarPronta(img) {
+    const ok = () => img.classList.add('ok');
+    img.addEventListener('load', ok);
+    if (img.complete && img.naturalWidth > 0) ok();
+  }
+
+  // os 3 blocos originais (já com as fotos começando a baixar)
+  track.querySelectorAll('.grid-fotos img').forEach(marcarPronta);
+
   const originais = Array.from(track.querySelectorAll('.grid-fotos'))
     .slice(0, 3)
     .map(b => b.cloneNode(true));
@@ -864,9 +873,11 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     const c = bloco.cloneNode(true);
     c.setAttribute('aria-hidden', 'true');
     c.querySelectorAll('img').forEach(img => {
+      img.classList.remove('ok');
       img.setAttribute('alt', '');
       img.setAttribute('decoding', 'async');
-      // se uma foto não abrir (arquivo faltando ou formato não suportado), usa uma reserva
+      marcarPronta(img);
+      // se uma foto não abrir (arquivo faltando), usa uma reserva
       img.addEventListener('error', () => {
         if (img.dataset.reserva) return;
         img.dataset.reserva = '1';
@@ -883,24 +894,20 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     track.style.animation = 'none';
     track.innerHTML = '';
 
-    // 1ª metade: repete os blocos até ficar mais alta que a janela
     let i = 0;
     do {
       track.appendChild(clonar(originais[i % originais.length]));
       i++;
     } while (track.offsetHeight < alvo * 1.1 || i % originais.length !== 0);
 
-    // 2ª metade: cópia exata da 1ª (a animação anda -50%, então o loop fecha sem emenda)
     Array.from(track.children).forEach(bloco => track.appendChild(clonar(bloco)));
 
-    // reinicia a animação
     void track.offsetWidth;
     track.style.animation = '';
   }
 
   montar();
 
-  // só refaz no resize se a ALTURA da janela mudou (evita trabalho à toa no celular ao rolar)
   let alturaAnterior = janela.clientHeight;
   let t;
   window.addEventListener('resize', () => {
@@ -913,7 +920,6 @@ O conceito “Quem entende de acabamento, não ignora o detalhe” relaciona o c
     }, 250);
   });
 
-  // pausa o rolo quando a home sai da tela (economiza CPU/bateria durante a rolagem)
   const hero = document.getElementById('home');
   if (hero && 'IntersectionObserver' in window) {
     new IntersectionObserver(([e]) => {
