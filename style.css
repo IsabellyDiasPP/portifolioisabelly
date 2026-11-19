@@ -238,14 +238,6 @@ section[id]{
   background:var(--ink);
   /* FIX: não força uma camada de GPU por foto (deixava a página pesada) */
 }
-/* fade-in de cada foto do rolo quando ela termina de carregar */
-.grid-fotos img{
-  opacity:0;
-  transition:opacity .45s ease;
-}
-.grid-fotos img.ok{
-  opacity:1;
-}
 
 /* FIX: cada bloco tem 5 fotos e 6 linhas, e as 3 colunas fecham exatamente 6 linhas (sem buraco):
    col 1: 4 + 2 | col 2: 2 + 4 | col 3: 1 foto alta (6).
