@@ -471,7 +471,7 @@ section[id]{
 .s-texto p{
   font-family:'Poppins', Arial, Helvetica, sans-serif;
   font-weight:400;
-  font-size:clamp(15px,1.35vw,17px);
+  font-size:clamp(17px,1.6vw,20px);
   line-height:1.75;
   color:var(--ink);
   margin-bottom:20px;
@@ -1853,7 +1853,7 @@ footer .footer-nota{
   }
 
   .s-texto p{
-    font-size:15.5px;
+    font-size:17px;
   }
 
   .projetos-lista{
